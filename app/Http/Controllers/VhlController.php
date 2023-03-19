@@ -14,7 +14,7 @@ class VhlController extends Controller
      */
     public function index()
     {
-        //
+        return 5;
     }
 
     /**
