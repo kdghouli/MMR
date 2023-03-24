@@ -19987,8 +19987,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   mounted: function mounted() {
     this.getDonne();
-    this.getAgence();
+    //this.getAgence();
   },
+
   computed: {
     agences: function agences() {
       var agences = new Set();
@@ -20006,7 +20007,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return _this.axios.get("http://localhost:5000/camion?_embed=comment").then(function (resp) {
+              return _this.axios.get("http://localhost:8000/api/vhls").then(function (resp) {
                 _this.camions = resp.data;
               });
             case 2:
@@ -20022,34 +20023,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return this.camions.filter(function (x) {
         return x.agenceId == agence;
       });
-    },
-    getAgence: function getAgence() {
-      var _this2 = this;
-      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
-        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-          while (1) switch (_context2.prev = _context2.next) {
-            case 0:
-              _context2.next = 2;
-              return _this2.axios.get("http://localhost:5000/agence").then(function (resp) {
-                _this2.agenca = resp.data;
-              });
-            case 2:
-              console.log(_this2.agenca);
-            case 3:
-            case "end":
-              return _context2.stop();
-          }
-        }, _callee2);
-      }))();
-    },
-    conta: function conta(bb) {
-      return Object.keys(this.camions.filter(function (x) {
-        return x.agenceId == bb;
-      })).length;
-    },
-    showFind: function showFind(id) {
-      return this.id = id;
-    }
+    } // async getAgence() {
+    //   await this.axios.get("http://localhost:5000/agence")
+    //     .then((resp) => {
+    //       this.agenca = resp.data;
+    //     });
+    //   console.log(this.agenca);
+    // },
+    // conta(bb) {
+    //   return Object.keys(this.camions.filter(x => x.agenceId == bb)).length
+    // },
+    // showFind(id) {
+    //   return this.id = id
+    // }
   }
 });
 
@@ -20132,7 +20118,7 @@ __webpack_require__.r(__webpack_exports__);
         Marque: this.Marque,
         agenceId: this.agenceId
       };
-      fetch('http://localhost:5000/camion', {
+      fetch('http://localhost:8000/api/vhls', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -20165,7 +20151,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       toggle: false,
-      url: "http://localhost:5000/posts/".concat(this.vhl.id)
+      url: "http://localhost:8000/api/vhls/".concat(this.vhl.id)
     };
   },
   methods: {
@@ -20344,7 +20330,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             case 0:
               console.log('updating');
               _context.next = 3;
-              return _this.axios.get("http://localhost:5000/camion/".concat(_this.id)).then(function (resp) {
+              return _this.axios.get("http://localhost:8000/api/vhls/".concat(_this.id)).then(function (resp) {
                 _this.vhl = resp.data;
               });
             case 3:
@@ -20981,14 +20967,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       "class": "row",
       key: index
-    }, [$options.conta($data.agenca[index].id) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("h3", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(agence) + " -- " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.conta($data.agenca[index].id)), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.cars($data.agenca[index].id), function (vhl) {
+    }, [_ctx.conta($data.agenca[index].id) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("h3", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(agence) + " -- " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.conta($data.agenca[index].id)), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.cars($data.agenca[index].id), function (vhl) {
       return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
         "class": "col-4 p-2 bg-primary",
         key: vhl.id
       }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_OneVhl, {
         vhl: vhl,
         onKatec: _cache[0] || (_cache[0] = function ($event) {
-          return $options.showFind($event);
+          return _ctx.showFind($event);
         })
       }, null, 8 /* PROPS */, ["vhl"])]);
     }), 128 /* KEYED_FRAGMENT */))]);

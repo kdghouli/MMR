@@ -63,7 +63,7 @@ export default {
   },
   mounted() {
     this.getDonne();
-    this.getAgence();
+    //this.getAgence();
 
 
 
@@ -82,7 +82,7 @@ export default {
 
   methods: {
     async getDonne() {
-      await this.axios.get("http://localhost:5000/camion?_embed=comment").then((resp) => {
+      await this.axios.get("http://localhost:8000/api/vhls").then((resp) => {
         this.camions = resp.data;
       });
       console.log(this.camions);
@@ -92,21 +92,21 @@ export default {
       return this.camions.filter(x => x.agenceId == agence);
     },
 
-    async getAgence() {
-      await this.axios.get("http://localhost:5000/agence")
-        .then((resp) => {
-          this.agenca = resp.data;
-        });
-      console.log(this.agenca);
-    },
-    conta(bb) {
-      return Object.keys(this.camions.filter(x => x.agenceId == bb)).length
+    // async getAgence() {
+    //   await this.axios.get("http://localhost:5000/agence")
+    //     .then((resp) => {
+    //       this.agenca = resp.data;
+    //     });
+    //   console.log(this.agenca);
+    // },
+    // conta(bb) {
+    //   return Object.keys(this.camions.filter(x => x.agenceId == bb)).length
 
 
-    },
-    showFind(id) {
-      return this.id = id
-    }
+    // },
+    // showFind(id) {
+    //   return this.id = id
+    // }
 
 
 

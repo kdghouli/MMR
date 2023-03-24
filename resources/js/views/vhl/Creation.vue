@@ -45,7 +45,7 @@
 {{agenceId}}
 
 </div>
-  
+
   </div>
 </template>
 
@@ -64,14 +64,14 @@ export default {
   methods: {
     ajouterEquipe() {
       console.log("K");
-        
+
           let camion = {
                 Matricule: this.Matricule,
                 Marque: this.Marque,
                 agenceId:this.agenceId
             };
-            
-                fetch('http://localhost:5000/camion', {
+
+                fetch('http://localhost:8000/api/vhls', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json'},
                     body: JSON.stringify(camion)

@@ -35,7 +35,7 @@ export default {
         return {
 
             toggle: false,
-            url: `http://localhost:5000/posts/${this.vhl.id}`,
+            url: `http://localhost:8000/api/vhls/${this.vhl.id}`,
 
 
         }
@@ -46,16 +46,16 @@ export default {
                 .then(() => this.$emit('delete', this.vhl.id))
                 .catch(err => console.log(err.message));
         },
-       
-          
+
+
          transff(id) {
-            this.$emit('katec',this.vhl.id)  
-        
+            this.$emit('katec',this.vhl.id)
+
 
     },
-   
 
-    
+
+
 }}
 </script>
 

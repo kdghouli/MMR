@@ -2,9 +2,9 @@
 
 <div v-if="vhl" class="border bg-dark border-success text-danger p-2">
         {{ id }}
-        
-        
-         
+
+
+
 
             <h1>{{ vhl.Matricule }}</h1>
             <p>{{ vhl.Matricule }}</p>
@@ -24,15 +24,15 @@ export default {
     },
 
     computed: {
-       
 
 
-        
+
+
 
         async getoDonne() {
 
             console.log('updating')
-            await this.axios.get(`http://localhost:5000/camion/${this.id}`).then((resp) => {
+            await this.axios.get(`http://localhost:8000/api/vhls/${this.id}`).then((resp) => {
                 this.vhl = resp.data;
             });
             console.log(this.vhl);
@@ -44,7 +44,7 @@ export default {
     },
 
    updated() {
-    
+
     this.getoDonne
 },
 
@@ -74,5 +74,5 @@ export default {
 
 </script>
 <style lang="">
-    
+
 </style>
