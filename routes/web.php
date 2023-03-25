@@ -20,3 +20,4 @@ Route::get('/', function () {
 
 
 Route::resource('/p', 'VhlController');
+
