@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><FileZilla3>
+    <Servers>
+        <Server>
+            <Host>mmr-23.atwebpages.com</Host>
+            <Port>221</Port>
+            <Protocol>1</Protocol>
+            <pass>u(,FQd0y4p8lcRNN</pass>
+            <Type>0</Type>
+            <User>4284791</User>
+            <Logontype>2</Logontype>
+            <TimezoneOffset>0</TimezoneOffset>
+            <PasvMode>MODE_DEFAULT</PasvMode>
+            <MaximumMultipleConnections>0</MaximumMultipleConnections>
+            <EncodingType>Auto</EncodingType>
+            <BypassProxy>0</BypassProxy>
+            <Name>4284791@mmr-23.atwebpages.com</Name>
+            <Comments/>
+            <LocalDir/>
+            <RemoteDir/>
+            <SyncBrowsing>0</SyncBrowsing>
+
+               <host-name> fdb30.awardspace.net</host-name>
+            <pass>)lS+Wy0d6tpgA^7B</pass>
+
+                <userBase>4284791_mmr</userBase>
+            <!--4284791@mmr-23.atwebpages.com-->
+        </Server>
+    </Servers>
+</FileZilla3>

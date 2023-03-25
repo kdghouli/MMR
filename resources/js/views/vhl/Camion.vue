@@ -82,7 +82,7 @@ export default {
 
   methods: {
     async getDonne() {
-      await this.axios.get("http://localhost:8000/api/vhls").then((resp) => {
+      await this.axios.get("/api/vhls").then((resp) => {
         this.camions = resp.data;
       });
       console.log(this.camions);
