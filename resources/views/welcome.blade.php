@@ -9,6 +9,7 @@
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Styles -->
     <style>
@@ -50,7 +51,7 @@
         svg,
         video {
             display: block;
-            
+
         }
 
         video {
@@ -396,6 +397,7 @@
             font-family: 'Nunito';
         }
     </style>
+
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 
@@ -411,7 +413,9 @@
 
 
 
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}" ></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+
 </body>
 
 </html>
