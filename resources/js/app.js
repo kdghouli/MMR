@@ -1,8 +1,8 @@
-//require('./bootstrap');
+require('./bootstrap');
 
 
-import "bootstrap" ;
 import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap" ;
 
 
 //Vue 3
