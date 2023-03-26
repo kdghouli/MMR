@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 
-<body class="container">
+<body class="container-fluid">
     <div id="app">
 
 
@@ -35,7 +35,7 @@
 
 
     <script src="{{ asset('js/app.js') }}" ></script>
-    
+
 
 </body>
 

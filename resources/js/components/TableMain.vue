@@ -56,7 +56,7 @@
                     <router-link class="text-decoration-none" :to="{ name: 'VoitureView', params: { id: voiture.id } }">{{
                         voiture.matricule }}</router-link> <span class="fw-lighter ms-2" style="font-size: 9px">{{
         voiture.type
-    }}&nbsp;&nbsp;&nbsp;&nbsp;{{ voiture.conducteur }}</span> <span
+    }}&nbsp;&nbsp;&nbsp;&nbsp;{{ voiture.utilisateur }}</span> <span
                         class="badge bg-primary rounded-pill">4</span>
                 </li>
 

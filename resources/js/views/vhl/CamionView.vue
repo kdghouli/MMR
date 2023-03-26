@@ -1,4 +1,5 @@
 <template>
+    <h1>{{ $route.params.id }}</h1>
   <div class="w-75">
     <h1 class="p-5">VhlOne d'agence {{ agenceName }}</h1>
 
@@ -32,12 +33,13 @@
 <script>
 
 //import CreateCommentView from "./CreateCommentView.vue";
-
+import { useBasesStore } from "./../store/bases.js";
 export default {
 
 
   data() {
     return {
+      base:useBasesStore(),
       vhl: {},
       agenceName:'',
       comments:{},
@@ -47,15 +49,16 @@ export default {
   },
 
   methods: {
-    Exit() {
-      return this.$route.params.id;
+    getVhl() {
+      return this vhl= this.$route.params.id;
     },
 
   },
   async mounted() {
-    const data = await this.axios.get(
-      `http://localhost:3000/vhls/${this.$route.params.id}?_expand=agence&_embed=comments`
-    );
+    // const data = await this.axios.get(
+    //  // `api/vhls/${this.$route.params.id}`
+    //  `api/vhls/${this.$route.params.id}`
+    // );
 
     this.vhl = data.data;
     this.agenceName=this.vhl.agence.agence
