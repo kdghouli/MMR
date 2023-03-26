@@ -14,8 +14,8 @@ class VhlController extends Controller
      */
     public function index()
     {
-        $vhls = Vhl::all();
-        return response()->json($vhls);
+
+        return Vhl::all();
     }
 
     /**

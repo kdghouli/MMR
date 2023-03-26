@@ -71,7 +71,7 @@ export default {
                 agenceId:this.agenceId
             };
 
-                fetch('http://localhost:8000/api/vhls', {
+                fetch('/api/vhls', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json'},
                     body: JSON.stringify(camion)

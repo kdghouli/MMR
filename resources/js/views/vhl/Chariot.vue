@@ -31,7 +31,7 @@
 export default {
   data(){
   return {
-    
+
     chariots:[]
 
 
@@ -39,7 +39,7 @@ export default {
   methods:{
 
 async getChariots() {
-      await this.axios.get("http://localhost:5000/chariot")
+      await this.axios.get("/chariot")
         .then((resp) => {
           this.chariots = resp.data;
         });
@@ -47,12 +47,12 @@ async getChariots() {
     },
 
 
-   
 
 
-  }, 
-  
-  
+
+  },
+
+
   mounted() {
       this.getChariots()
     },

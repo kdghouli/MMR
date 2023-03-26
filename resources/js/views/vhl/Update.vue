@@ -45,7 +45,7 @@
 {{camion.agenceId}}
 
 </div>
-  
+
   </div>
 </template>
 
@@ -55,7 +55,7 @@ export default {
  props: ['id'],
      data() {
         return {
-            url: `http://localhost:5000/camion/${this.id}`,
+            url: `/camion/${this.id}`,
             camion: {
                 Matricule: '',
                 Marque: '',
@@ -69,7 +69,7 @@ export default {
            if(this.camion.Matricule == '' || this.camion.Marque == '') {
                return;
            }
-           
+
             fetch(this.url, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
@@ -83,7 +83,7 @@ export default {
 
     },
      mounted() {
-        
+
             fetch(this.url)
             .then(res => res.json())
             .then(data => this.camion = data)

@@ -35,7 +35,7 @@ export default {
         return {
 
             toggle: false,
-            url: `http://localhost:8000/api/vhls/${this.vhl.id}`,
+            url: `/api/vhls/${this.vhl.id}`,
 
 
         }

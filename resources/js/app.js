@@ -1,7 +1,8 @@
 require('./bootstrap');
 
-import "bootstrap" ;
 import "bootstrap/dist/css/bootstrap.min.css"
+import 'bootstrap/dist/js/bootstrap.min.js'
+import "bootstrap" ;
 
 
 //Vue 3
@@ -9,7 +10,6 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import{createApp} from "vue";
 import { createPinia } from 'pinia';
 import router from "./router";
-import store from './store';
 import App from './App.vue';
 //import PostIndex from "./components/PostIndex.vue";
 

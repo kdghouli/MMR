@@ -32,7 +32,7 @@ export default {
         async getoDonne() {
 
             console.log('updating')
-            await this.axios.get(`http://localhost:8000/api/vhls/${this.id}`).then((resp) => {
+            await this.axios.get(`/api/vhls/${this.id}`).then((resp) => {
                 this.vhl = resp.data;
             });
             console.log(this.vhl);
