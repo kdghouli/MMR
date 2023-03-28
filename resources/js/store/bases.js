@@ -28,6 +28,9 @@ export const useBasesStore = defineStore("bases", {
       return (age) => state.camions.filter((x) => x.agenceId == age).map((x)=>x.matricule)
     },
 
+    getOneVhl(id) {
+        return this.vhl= this.base.filter(x => x.id == id)
+     },
 
 
 
@@ -93,6 +96,7 @@ export const useBasesStore = defineStore("bases", {
 
 
         }
+
 
 
 

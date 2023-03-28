@@ -1,72 +1,75 @@
 <template>
-    <h1>{{ $route.params.id }}</h1>
+  <h1>{{ $route.params.id }}</h1>
   <div class="w-75">
-    <h1 class="p-5">VhlOne d'agence {{ agenceName }}</h1>
+    <h1 class="p-5">VhlOne d'agence {{vhl}}</h1>
+    <div v-for="vhlo in vhl " :key="vhlo">
+
+
+
 
     <div class="p-1 bg-info">
       <h3 class="bg-success text-white fw-bolder p-2 text-center">
-        {{ vhl.matricule }}
+        {{ vhlo }}
       </h3>
 
       <p>
         Matricule :
-        <span class="fw-bolder text-bg-success p-1 mx-2">{{
-          vhl.matricule
-        }}</span>
+        <span class="fw-bolder text-bg-success p-1 mx-2">{{ vhlo.matricule }}</span>
       </p>
-      <p>Marque : {{ vhl.marque }}</p>
-      <p>Affectation : {{ vhl.agenceId }}</p>
-      <p>Proprietaire : {{ vhl.intitule }}</p>
-      <p>DMC : {{ vhl.date }}</p>
-      <p >Chassis : {{ agenceName }}</p>
-      <p v-for="comment in comments" :key="comment.index">Type : {{ comment.comment }}</p>
+      <p>Marque : {{ vhlo.marque }}</p>
+      <p>Affectation : {{ vhlo.agenceId }}</p>
+      <p>Proprietaire : {{ vhlo.intitule }}</p>
+      <p>DMC : {{ vhlo.date_mc }}</p>
+      <p>Chassis : {{ agenceName }}</p>
+      <!-- <p v-for="comment in comments" :key="comment.index">Type : {{ comment.comment }}</p> -->
 
       <!-- <router-link class="btn btn-warning float-end" :to="{name:'EditCamionView',params:{id:$route.params.id}}"> modifier </router-link> -->
-      <button class="btn btn-danger me-2" @click="componentComment=!componentComment"> + Commentaire </button>
+      <!-- <button class="btn btn-danger me-2" @click="componentComment=!componentComment"> + Commentaire </button> -->
       <div v-if="componentComment">
         <!-- <CreateCommentView :vhl="vhl" @closing="componentComment=false"/> -->
       </div>
     </div>
+    </div>
+
   </div>
 </template>
 
 <script>
-
 //import CreateCommentView from "./CreateCommentView.vue";
-import { useBasesStore } from "./../store/bases.js";
+import { useBasesStore } from "./../../store/bases.js";
 export default {
-
-
   data() {
     return {
-      base:useBasesStore(),
-      vhl: {},
-      agenceName:'',
-      comments:{},
-      nbComments:'',
-      componentComment:false
-    }
+      base: useBasesStore(),
+      vhl:{},
+      agenceName: "",
+      comments: {},
+      nbComments: "",
+      componentComment: false,
+    };
+  },
+computed:{
+    vhl() {
+      return (this.vhl = this.base.base.filter((x) => x.id == this.$route.params.id));
+    },
   },
 
   methods: {
-    getVhl() {
-      return this vhl= this.$route.params.id;
-    },
 
-  },
   async mounted() {
     // const data = await this.axios.get(
     //  // `api/vhls/${this.$route.params.id}`
     //  `api/vhls/${this.$route.params.id}`
     // );
+   // this.getOneVhl();
+    // console.log(this.vhl);
 
-    this.vhl = data.data;
-    this.agenceName=this.vhl.agence.agence
-    this.comments=this.vhl.comments
-    this.nbComments=this.vhl.comments.length
-    console.log(this.nbComments)
+    // this.agenceName=this.vhl.agence.agence
+    // this.comments=this.vhl.comments
+    // this.nbComments=this.vhl.comments.length
+    // console.log(this.nbComments)
   },
-};
+}};
 </script>
 
 <style>
