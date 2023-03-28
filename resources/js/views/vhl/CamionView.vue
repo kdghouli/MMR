@@ -1,7 +1,7 @@
 <template>
   <h1>{{ $route.params.id }}</h1>
   <div class="w-75">
-    <h1 class="p-5">VhlOne d'agence {{vhl}}</h1>
+    <h1 class="p-5">VhlOne d'agence {{vhl[0].matricule}}</h1>
     <div v-for="vhlo in vhl " :key="vhlo">
 
 
@@ -9,7 +9,7 @@
 
     <div class="p-1 bg-info">
       <h3 class="bg-success text-white fw-bolder p-2 text-center">
-        {{ vhlo }}
+        {{ vhlo.matricule }}
       </h3>
 
       <p>
@@ -17,8 +17,8 @@
         <span class="fw-bolder text-bg-success p-1 mx-2">{{ vhlo.matricule }}</span>
       </p>
       <p>Marque : {{ vhlo.marque }}</p>
-      <p>Affectation : {{ vhlo.agenceId }}</p>
-      <p>Proprietaire : {{ vhlo.intitule }}</p>
+      <p>Affectation : {{ vhlo.agence_id }}</p>
+      <p>Proprietaire : {{ vhlo.intitule_id }}</p>
       <p>DMC : {{ vhlo.date_mc }}</p>
       <p>Chassis : {{ agenceName }}</p>
       <!-- <p v-for="comment in comments" :key="comment.index">Type : {{ comment.comment }}</p> -->
@@ -50,25 +50,27 @@ export default {
   },
 computed:{
     vhl() {
-      return (this.vhl = this.base.base.filter((x) => x.id == this.$route.params.id));
+
+      return  this.vhl = this.base.base.filter((x) => x.id == this.$route.params.id);
+
     },
   },
 
   methods: {
 
-  async mounted() {
-    // const data = await this.axios.get(
-    //  // `api/vhls/${this.$route.params.id}`
-    //  `api/vhls/${this.$route.params.id}`
-    // );
-   // this.getOneVhl();
-    // console.log(this.vhl);
+//   async mounted() {
+//     // const data = await this.axios.get(
+//     //  // `api/vhls/${this.$route.params.id}`
+//     //  `api/vhls/${this.$route.params.id}`
+//     // );
+//    // this.getOneVhl();
+//     // console.log(this.vhl);
 
-    // this.agenceName=this.vhl.agence.agence
-    // this.comments=this.vhl.comments
-    // this.nbComments=this.vhl.comments.length
-    // console.log(this.nbComments)
-  },
+//     // this.agenceName=this.vhl.agence.agence
+//     // this.comments=this.vhl.comments
+//     // this.nbComments=this.vhl.comments.length
+//     // console.log(this.nbComments)
+//   },
 }};
 </script>
 

@@ -14,7 +14,8 @@ export const useBasesStore = defineStore("bases", {
     commentaires:[],
     status:[],
     searchText:'',
-    listCamion:{}
+    listCamion:{},
+    vhl:{}
 
 
 
@@ -25,7 +26,7 @@ export const useBasesStore = defineStore("bases", {
 
   getters: {
     getMat(state) {
-      return (age) => state.camions.filter((x) => x.agenceId == age).map((x)=>x.matricule)
+      return (age) => state.camions.filter((x) => x.agence_id == age).map((x)=>x.matricule)
     },
 
     getOneVhl(id) {
@@ -80,10 +81,11 @@ export const useBasesStore = defineStore("bases", {
   actions: {
     async fetchBase() {
       try {
-        console.log('fetchBase - BasesPinia')
-        const data = await axios.get("/api/vhls");
-        this.base = data.data;
-        console.log(this.base)
+        console.log('fetchBase - BasesPinia');
+        const resp = await axios.get("/api/vhls");
+        this.base =resp.data;
+
+       console.log(this.base)
       } catch (error) {
         console.log(error);
       }
