@@ -2,7 +2,7 @@ require('./bootstrap');
 
 
 import "bootstrap/dist/css/bootstrap.min.css"
-import "bootstrap" ;
+import "./bootstrap" ;
 
 
 //Vue 3

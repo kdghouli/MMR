@@ -21080,9 +21080,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   computed: {
     filterMatricule: function filterMatricule() {
-      this.camionsMat = this.base.getCamions, this.voituresMat = this.base.getVoitures, this.chariotsMat = this.base.getChariots, this.scootersMat = this.base.getScooters,
+      this.camionsMat = this.base.getCamions, this.voituresMat = this.base.getVoitures, this.chariotsMat = this.base.getChariots, this.scootersMat = this.base.getScooters;
       // this.CommentsDb = this.db.comments
-      console.log('camion:' + this.camionsMat);
     }
   },
   mounted: function mounted() {
@@ -22720,11 +22719,11 @@ var _hoisted_6 = {
   key: 0
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$route.params.id), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_2, "VhlOne d'agence " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.vhl[0].matricule), 1 /* TEXT */), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.vhl, function (vhlo) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_2, "VhlOne d'agence " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.vhl[0].matricule), 1 /* TEXT */), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.vhl, function (vhlo) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       key: vhlo
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(vhlo.matricule), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Matricule : "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(vhlo.matricule), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Marque : " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(vhlo.marque), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Affectation : " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(vhlo.agence_id), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Proprietaire : " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(vhlo.intitule_id), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "DMC : " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(vhlo.date_mc), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Chassis : " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.agenceName), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <p v-for=\"comment in comments\" :key=\"comment.index\">Type : {{ comment.comment }}</p> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <router-link class=\"btn btn-warning float-end\" :to=\"{name:'EditCamionView',params:{id:$route.params.id}}\"> modifier </router-link> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button class=\"btn btn-danger me-2\" @click=\"componentComment=!componentComment\"> + Commentaire </button> "), $data.componentComment ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <CreateCommentView :vhl=\"vhl\" @closing=\"componentComment=false\"/> ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]);
-  }), 128 /* KEYED_FRAGMENT */))])], 64 /* STABLE_FRAGMENT */);
+  }), 128 /* KEYED_FRAGMENT */))]);
 }
 
 /***/ }),
@@ -23415,7 +23414,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.min.css */ "./node_modules/bootstrap/dist/css/bootstrap.min.css");
-/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.esm.js");
+/* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+/* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_bootstrap__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var pinia__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! pinia */ "./node_modules/pinia/dist/pinia.mjs");
 /* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./router */ "./resources/js/router/index.js");
@@ -23726,7 +23726,14 @@ var useBasesStore = (0,pinia__WEBPACK_IMPORTED_MODULE_0__.defineStore)("bases", 
           }
         }, _callee2);
       }))();
-    }
+    } //     agences() {
+    //         const agences = new Set();
+    //         this.agenca.forEach(x => agences.add(x.agence));
+    //         return Array.from(agences);
+    //       },
+    //       conta(bb) {
+    //         return Object.keys(this.camions.filter(x => x.agenceId == bb)).length
+    //  },
   }
 });
 

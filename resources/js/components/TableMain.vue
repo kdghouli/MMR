@@ -151,9 +151,8 @@ export default {
             this.camionsMat = this.base.getCamions,
             this.voituresMat = this.base.getVoitures,
             this.chariotsMat = this.base.getChariots,
-            this.scootersMat = this.base.getScooters,
+            this.scootersMat = this.base.getScooters
            // this.CommentsDb = this.db.comments
-           console.log('camion:'+ this.camionsMat);
 
         },
 

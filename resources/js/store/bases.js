@@ -97,17 +97,26 @@ export const useBasesStore = defineStore("bases", {
 
 
 
-        }
+        },
+    //     agences() {
+    //         const agences = new Set();
+    //         this.agenca.forEach(x => agences.add(x.agence));
+    //         return Array.from(agences);
+
+    //       },
+
+    //       conta(bb) {
+    //         return Object.keys(this.camions.filter(x => x.agenceId == bb)).length
 
 
 
 
 
 
-     },
+    //  },
 
 
-
+    }
 
 
 });

@@ -1,5 +1,5 @@
 <template>
-  <h1>{{ $route.params.id }}</h1>
+
   <div class="w-75">
     <h1 class="p-5">VhlOne d'agence {{vhl[0].matricule}}</h1>
     <div v-for="vhlo in vhl " :key="vhlo">

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Vhl;
 use Illuminate\Http\Request;
+use App\Http\Resources\VhlResource;
 
 class VhlController extends Controller
 {
@@ -15,7 +17,8 @@ class VhlController extends Controller
     public function index()
     {
 
-        return Vhl::all();
+        return VhlResource::collection(Vhl::with(['agence','categorie','intitule','statu','comment'])->get());
+
     }
 
     /**
