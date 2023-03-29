@@ -9,6 +9,7 @@ class Vhl extends Model
 {
 
     use SoftDeletes;
+    protected $hidden=['created_at','updated_at'];
 
     // protected $table = 'vhls';
 

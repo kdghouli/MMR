@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Vhl;
+use App\Agence;
 use Illuminate\Http\Request;
 use App\Http\Resources\VhlResource;
+use App\Http\Resources\ListResource;
 
 class VhlController extends Controller
 {
@@ -20,6 +21,12 @@ class VhlController extends Controller
         return VhlResource::collection(Vhl::with(['agence','categorie','intitule','statu','comment'])->get());
 
     }
+
+    public function ListAgences()
+    {
+        return  ListResource::collection(Agence::all());
+    }
+
 
     /**
      * Show the form for creating a new resource.

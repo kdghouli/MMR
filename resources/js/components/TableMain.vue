@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h4>Liste des véhicules d'agence {{ base.base.matricule }}</h4>
+        <h4>Liste des véhicules d'agence {{agences }}</h4>
 
         <select class="form-select" aria-label="Default select example" v-model="Selected" @click="filterMatricule">
             <option value="1">Marrakech</option>
@@ -32,7 +32,7 @@
                     <router-link class="text-decoration-none" :to="{ name: 'CamionView', params: { id: camion.id } }">{{
                         camion.matricule }}
                     </router-link>
-                    <span class="fw-lighter ms-4 me-auto align-bottom" style="font-size: 9px">{{ camion.intitule }}</span>
+                    <span class="fw-lighter ms-4 me-auto align-bottom" style="font-size: 9px">{{ camion.intitule.nom }}</span>
                     <span class="badge bg-success rounded-pill" v-if="calcComments(camion.id)">{{ calcComments(camion.id)
                     }}</span>
                 </li>
@@ -122,6 +122,7 @@ export default {
     data() {
         return {
             base:useBasesStore(),
+            agences:useBasesStore().agences,
             db: {},
             camionsMat: {},
             voituresMat: {},
@@ -162,6 +163,7 @@ export default {
     async mounted() {
 
        await  this.base.fetchBase();
+       await  this.base.getAgencesList();
 
 
         this.filterMatricule

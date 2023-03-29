@@ -21059,6 +21059,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       base: (0,_store_bases_js__WEBPACK_IMPORTED_MODULE_0__.useBasesStore)(),
+      agences: (0,_store_bases_js__WEBPACK_IMPORTED_MODULE_0__.useBasesStore)().agences,
       db: {},
       camionsMat: {},
       voituresMat: {},
@@ -21093,8 +21094,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             _context.next = 2;
             return _this.base.fetchBase();
           case 2:
+            _context.next = 4;
+            return _this.base.getAgencesList();
+          case 4:
             _this.filterMatricule;
-          case 3:
+          case 5:
           case "end":
             return _context.stop();
         }
@@ -22206,7 +22210,7 @@ var _hoisted_44 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", null, "Liste des véhicules d'agence " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.base.base.matricule), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", null, "Liste des véhicules d'agence " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.agences), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     "class": "form-select",
     "aria-label": "Default select example",
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
@@ -22235,7 +22239,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }),
 
       _: 2 /* DYNAMIC */
-    }, 1032 /* PROPS, DYNAMIC_SLOTS */, ["to"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(camion.intitule), 1 /* TEXT */), $options.calcComments(camion.id) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.calcComments(camion.id)), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 2 /* CLASS */)]);
+    }, 1032 /* PROPS, DYNAMIC_SLOTS */, ["to"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(camion.intitule.nom), 1 /* TEXT */), $options.calcComments(camion.id) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.calcComments(camion.id)), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 2 /* CLASS */)]);
   }), 128 /* KEYED_FRAGMENT */))]), _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Voitures "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Nombre des "), _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.voituresMat.length), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.voituresMat, function (voiture) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("ul", {
       "class": "list-group",
@@ -23627,7 +23631,8 @@ var useBasesStore = (0,pinia__WEBPACK_IMPORTED_MODULE_0__.defineStore)("bases", 
       status: [],
       searchText: '',
       listCamion: {},
-      vhl: {}
+      vhl: {},
+      agenca: []
     };
   },
   // ######################################################
@@ -23716,11 +23721,24 @@ var useBasesStore = (0,pinia__WEBPACK_IMPORTED_MODULE_0__.defineStore)("bases", 
         }, _callee, null, [[0, 9]]);
       }))();
     },
-    addVhls: function addVhls() {
+    getAgencesList: function getAgencesList() {
+      var _this2 = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        var agences, respAg;
         return _regeneratorRuntime().wrap(function _callee2$(_context2) {
           while (1) switch (_context2.prev = _context2.next) {
             case 0:
+              agences = new Set();
+              _context2.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_1__["default"].get("/api/agences");
+            case 3:
+              respAg = _context2.sent;
+              console.log(respAg);
+              _this2.agenca.forEach(function (x) {
+                return agences.add(x.agence);
+              });
+              return _context2.abrupt("return", Array.from(agences));
+            case 7:
             case "end":
               return _context2.stop();
           }

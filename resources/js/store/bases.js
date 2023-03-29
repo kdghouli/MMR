@@ -15,7 +15,9 @@ export const useBasesStore = defineStore("bases", {
     status:[],
     searchText:'',
     listCamion:{},
-    vhl:{}
+    vhl:{},
+
+    agenca:[]
 
 
 
@@ -79,6 +81,7 @@ export const useBasesStore = defineStore("bases", {
   // ######################################################
 
   actions: {
+
     async fetchBase() {
       try {
         console.log('fetchBase - BasesPinia');
@@ -91,7 +94,14 @@ export const useBasesStore = defineStore("bases", {
       }
     },
 
-       async addVhls(){
+       async getAgencesList(){
+        const agences = new Set();
+        const respAg = await axios.get("/api/agences");
+        console.log(respAg);
+
+        this.agenca.forEach(x => agences.add(x.agence));
+        return Array.from(agences);
+
 
 
 
