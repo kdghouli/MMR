@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col">
             <div class="text-right">
-                <img src="../vhl/camionfleet.png" alt="" width="70" />
+                <!-- <img src="./../../../public/camionfleet.png" alt="" width="70" /> -->
                 <h1>Camion distribution</h1>
                 <router-link to="/new" class="btn btn-primary float-md-end">New</router-link>
             </div>

@@ -17,7 +17,7 @@
 <script>
 
 export default {
-name:'Pooter'
+name:'Footer'
 }
 </script>
 

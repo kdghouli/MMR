@@ -94,20 +94,20 @@ export const useBasesStore = defineStore("bases", {
       }
     },
 
-       async getAgencesList(){
-        const agences = new Set();
-        const respAg = await axios.get("/api/agences");
-        console.log(respAg);
+    //    async getAgencesList(){
+    //     const agences = new Set();
+    //     const respAg = await axios.get("/api/agences");
+    //     console.log(respAg);
 
-        this.agenca.forEach(x => agences.add(x.agence));
-        return Array.from(agences);
-
-
+    //     this.agenca.forEach(x => agences.add(x.agence));
+    //     return Array.from(agences);
 
 
 
 
-        },
+
+
+        // },
     //     agences() {
     //         const agences = new Set();
     //         this.agenca.forEach(x => agences.add(x.agence));

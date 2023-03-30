@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 </head>
 
-<body class="container-fluid">
+<body class="container">
     <div id="app">
 
 
