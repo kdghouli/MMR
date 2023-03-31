@@ -1,23 +1,15 @@
 <template>
     <div>
-        <h2>Liste de véhicules Agence</h2>
+        <h2>Liste de véhicules Agence {{ agencaList }}</h2>
 
         <select
+
             class="form-select"
             aria-label="Default select example"
             v-model="Selected"
             @click="filterMatricule"
-        >
-            <option value="1">Marrakech</option>
-            <option value="2" selected>Beni Mellal</option>
-            <option value="3">Essaouira</option>
-            <option value="4">Safi</option>
-            <option value="5">Sidi Bennour</option>
-            <option value="6">Khouribga</option>
-            <option value="7">El Kelaa</option>
-            <option value="9">Ouarzazate</option>
-            <option value="10">Ain Harrouda</option>
-        </select>
+        >   <option v-for="agence in agencaList" :key="agence" :value="agence[0]">{{ agence[1] }}</option>
+            </select>
 
         <!-- Camions -->
 
@@ -201,9 +193,9 @@ export default {
         };
     },
     methods: {
-        // selectAgence() {
-        //   return (this.camionsMat = this.agences[this.Selected].camions);
-        // },
+        selectAgence() {
+          return (this.camionsMat = this.agences[this.Selected].camions);
+        },
 
         calcComments(ddd) {
             // const nbComments = this.CommentsDb.filter(sel => sel.camionId == ddd)
@@ -216,8 +208,9 @@ export default {
                 .get("/api/agences")
             this.agenca = respAg.data
             console.log(this.agenca);
-            const agences = new Set();
-            this.agenca.forEach((x) => agences.add(x.nom));
+            const agences = new Map();
+            this.agenca.forEach((x) => agences.set(x.id,x.nom));
+            console.log(agences);
              this.agencaList= Array.from(agences);
             return console.log(this.agencaList);
         },
