@@ -193,9 +193,7 @@ export default {
         };
     },
     methods: {
-        selectAgence() {
-          return (this.camionsMat = this.agences[this.Selected].camions);
-        },
+
 
         calcComments(ddd) {
             // const nbComments = this.CommentsDb.filter(sel => sel.camionId == ddd)
@@ -218,12 +216,20 @@ export default {
 
     computed: {
         filterMatricule() {
-            (this.camionsMat = this.base.getCamions),
-                (this.voituresMat = this.base.getVoitures),
-                (this.chariotsMat = this.base.getChariots),
-                (this.scootersMat = this.base.getScooters);
+            this.camionsMat = this.base.getCamions.filter(x=>x.agence_id == this.Selected),
+                (this.voituresMat = this.base.getVoitures.filter(x=>x.agence_id == this.Selected)),
+                (this.chariotsMat = this.base.getChariots.filter(x=>x.agence_id == this.Selected)),
+                (this.scootersMat = this.base.getScooters.filter(x=>x.agence_id == this.Selected))
             // this.CommentsDb = this.db.comments
         },
+        // selectAgence() {
+        //   this.camionsMat = this.camionsMat.filter(x=>x.agence_id == this.Selected)
+
+
+
+
+
+        // },
     },
 
     async mounted() {
@@ -232,7 +238,16 @@ export default {
 
         this.filterMatricule;
         this.getListAgences();
+        //this.selectAgence;
     },
+ updated(){
+     this.base.fetchBase();
+    console.log(this.Selected);
+
+}
+
+
+
 };
 </script>
 <style></style>

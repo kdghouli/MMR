@@ -21074,9 +21074,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   methods: {
-    selectAgence: function selectAgence() {
-      return this.camionsMat = this.agences[this.Selected].camions;
-    },
     calcComments: function calcComments(ddd) {
       // const nbComments = this.CommentsDb.filter(sel => sel.camionId == ddd)
       // return nbComments.length
@@ -21112,29 +21109,45 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   computed: {
     filterMatricule: function filterMatricule() {
-      this.camionsMat = this.base.getCamions, this.voituresMat = this.base.getVoitures, this.chariotsMat = this.base.getChariots, this.scootersMat = this.base.getScooters;
+      var _this2 = this;
+      this.camionsMat = this.base.getCamions.filter(function (x) {
+        return x.agence_id == _this2.Selected;
+      }), this.voituresMat = this.base.getVoitures.filter(function (x) {
+        return x.agence_id == _this2.Selected;
+      }), this.chariotsMat = this.base.getChariots.filter(function (x) {
+        return x.agence_id == _this2.Selected;
+      }), this.scootersMat = this.base.getScooters.filter(function (x) {
+        return x.agence_id == _this2.Selected;
+      });
       // this.CommentsDb = this.db.comments
-    }
+    } // selectAgence() {
+    //   this.camionsMat = this.camionsMat.filter(x=>x.agence_id == this.Selected)
+    // },
   },
   mounted: function mounted() {
-    var _this2 = this;
+    var _this3 = this;
     return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
       return _regeneratorRuntime().wrap(function _callee2$(_context2) {
         while (1) switch (_context2.prev = _context2.next) {
           case 0:
             _context2.next = 2;
-            return _this2.base.fetchBase();
+            return _this3.base.fetchBase();
           case 2:
             //await this.base.getAgencesList();
 
-            _this2.filterMatricule;
-            _this2.getListAgences();
+            _this3.filterMatricule;
+            _this3.getListAgences();
+            //this.selectAgence;
           case 4:
           case "end":
             return _context2.stop();
         }
       }, _callee2);
     }))();
+  },
+  updated: function updated() {
+    this.base.fetchBase();
+    console.log(this.Selected);
   }
 });
 
