@@ -1,12 +1,12 @@
 <template>
 
 
-  <table-main  />
-  
+  <MasterView  />
+
 </template>
 
 <script>
-import TableMain from "../components/TableMain.vue";
+import MasterView from "../components/MasterView.vue";
 
 
 export default {
@@ -17,7 +17,7 @@ export default {
     };
   },
   components: {
-    TableMain,
+    MasterView,
   },
 
   mounted() {

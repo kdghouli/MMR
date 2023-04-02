@@ -1,12 +1,12 @@
 <template>
     <div class="row">
-        <nav-bar class="col" />
+        <nav-bar/>
     </div>
 <div class="row">
-        <router-view class="col"/>
+        <router-view />
 </div>
     <div class="row">
-        <Footer class="col"/>
+        <Footer />
     </div>
 </template>
 

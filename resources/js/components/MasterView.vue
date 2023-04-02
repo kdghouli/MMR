@@ -1,15 +1,24 @@
 <template>
-    <div>
-        <h2>Liste de véhicules Agence {{ agencaList }}</h2>
-
+    <div >
+    <div class="row mt-2">
+        <h2 class="col-6 mt-1">Liste des véhicules Agence  :</h2>
+<div class="col-6">
         <select
-
-            class="form-select"
+            class="form-select fs-5"
             aria-label="Default select example"
             v-model="Selected"
             @click="filterMatricule"
-        >   <option v-for="agence in agencaList" :key="agence" :value="agence[0]">{{ agence[1] }}</option>
-            </select>
+        >
+            <option
+                v-for="agence in agencaList"
+                :key="agence"
+                :value="agence[0]"
+            >
+                {{ agence[1] }}
+            </option>
+        </select>
+</div>
+    </div>
 
         <!-- Camions -->
 
@@ -174,7 +183,7 @@
 
 <script>
 import axios from "axios";
-import { useBasesStore } from "./../store/bases.js";
+import { useBasesStore } from "../store/bases.js";
 export default {
     data() {
         return {
@@ -189,12 +198,9 @@ export default {
             Selected: Math.floor(Math.random() * 11),
             agenca: {},
             agencaList: null,
-
         };
     },
     methods: {
-
-
         calcComments(ddd) {
             // const nbComments = this.CommentsDb.filter(sel => sel.camionId == ddd)
             // return nbComments.length
@@ -202,32 +208,35 @@ export default {
         },
 
         async getListAgences() {
-          const respAg= await axios
-                .get("/api/agences")
-            this.agenca = respAg.data
+            const respAg = await axios.get("/api/agences");
+            this.agenca = respAg.data;
             console.log(this.agenca);
             const agences = new Map();
-            this.agenca.forEach((x) => agences.set(x.id,x.nom));
+            this.agenca.forEach((x) => agences.set(x.id, x.nom));
             console.log(agences);
-             this.agencaList= Array.from(agences);
+            this.agencaList = Array.from(agences);
             return console.log(this.agencaList);
         },
     },
 
     computed: {
         filterMatricule() {
-            this.camionsMat = this.base.getCamions.filter(x=>x.agence_id == this.Selected),
-                (this.voituresMat = this.base.getVoitures.filter(x=>x.agence_id == this.Selected)),
-                (this.chariotsMat = this.base.getChariots.filter(x=>x.agence_id == this.Selected)),
-                (this.scootersMat = this.base.getScooters.filter(x=>x.agence_id == this.Selected))
+            (this.camionsMat = this.base.getCamions.filter(
+                (x) => x.agence_id == this.Selected
+            )),
+                (this.voituresMat = this.base.getVoitures.filter(
+                    (x) => x.agence_id == this.Selected
+                )),
+                (this.chariotsMat = this.base.getChariots.filter(
+                    (x) => x.agence_id == this.Selected
+                )),
+                (this.scootersMat = this.base.getScooters.filter(
+                    (x) => x.agence_id == this.Selected
+                ));
             // this.CommentsDb = this.db.comments
         },
         // selectAgence() {
         //   this.camionsMat = this.camionsMat.filter(x=>x.agence_id == this.Selected)
-
-
-
-
 
         // },
     },
@@ -240,14 +249,10 @@ export default {
         this.getListAgences();
         //this.selectAgence;
     },
- updated(){
-     this.base.fetchBase();
-    console.log(this.Selected);
-
-}
-
-
-
+    updated() {
+        this.base.fetchBase();
+        console.log(this.Selected);
+    },
 };
 </script>
 <style></style>
