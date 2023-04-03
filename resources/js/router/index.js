@@ -9,9 +9,8 @@ import Show from "../views/vhl/Show.vue";
 import Edit from "../views/vhl/Update.vue";
 import Reclam from "../views/vhl/Reclamation.vue";
 import Dashboard from "../views/dashboard/Dashboard.vue";
-import CamionView from "../views/vhl/CamionView.vue";
-import VoitureView from "../views/vhl/VoitureView.vue";
-import ScooterView from "../views/vhl/ScooterView.vue";
+import OneVhlView from "../views/vhl/OneVhlView.vue";
+
 
 
 const routes = [
@@ -57,20 +56,12 @@ const routes = [
     },
 
     {
-        path: "/camion/:id",
-        name: "CamionView",
-        component: CamionView,
+        path: "/:id",
+        name: "OneVhlView",
+        component: OneVhlView,
     },
-    {
-        path: "/voiture/:id",
-        name: "VoitureView",
-        component: VoitureView,
-    },
-    {
-        path: "/scooter/:id",
-        name: "ScooterView",
-        component: ScooterView,
-    },
+
+
     {
         path: "/edit/:id",
         name: "vhl-edit",

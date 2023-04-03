@@ -66,7 +66,7 @@
 
 <script>
 //import CreateCommentView from "./CreateCommentView.vue";
-import { useBasesStore } from "./../../store/bases.js";
+import { useBasesStore } from "../../store/bases.js";
 export default {
   data() {
     return {
