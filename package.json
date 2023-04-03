@@ -27,6 +27,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "bootswatch": "^5.2.3",
         "jquery": "^3.6.4",
         "pinia": "^2.0.33"
     }

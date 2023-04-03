@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="row mt-2">
-      <h2 class="col-6 mt-1">Liste des véhicules Agence :</h2>
-      <div class="col-6">
+      <h3 class="col-6 mt-1">Liste des véhicules Agence :</h3>
+      <div class="col-5">
         <select
           class="form-select fs-5"
           aria-label="Default select example"
@@ -173,7 +173,7 @@ export default {
     calcComments(ddd) {
       // const nbComments = this.CommentsDb.filter(sel => sel.camionId == ddd)
       // return nbComments.length
-      return 4;
+      return 0;
     },
 
     async getListAgences() {
