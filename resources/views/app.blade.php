@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 </head>
 
-<body class="container">
+<body class="container bg-light">
     <div id="app">
 
 

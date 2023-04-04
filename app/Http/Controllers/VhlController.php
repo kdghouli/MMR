@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Vhl;
 use App\Agence;
+use App\Comment;
 use Illuminate\Http\Request;
 use App\Http\Resources\VhlResource;
 use App\Http\Resources\ListResource;
@@ -25,6 +26,10 @@ class VhlController extends Controller
     public function ListAgences()
     {
         return  ListResource::collection(Agence::all());
+    }
+    public function ListComments()
+    {
+        return  ListResource::collection(Comment::all());
     }
 
 

@@ -9,6 +9,7 @@
           v-model="Selected"
           @click="filterMatricule"
         >
+          <option value="tous">Tous</option>
           <option v-for="agence in agencaList" :key="agence" :value="agence[0]">
             {{ agence[1] }}
           </option>
@@ -150,7 +151,11 @@
   </div>
 </template>
 
+
+
+
 <script>
+
 import axios from "axios";
 import { useBasesStore } from "../store/bases.js";
 export default {
@@ -171,9 +176,9 @@ export default {
   },
   methods: {
     calcComments(ddd) {
-      // const nbComments = this.CommentsDb.filter(sel => sel.camionId == ddd)
-      // return nbComments.length
-      return 0;
+       const nbComments = this.CommentsDb.filter(sel => sel.camionId == ddd)
+      return nbComments.length;
+
     },
 
     async getListAgences() {
@@ -190,18 +195,30 @@ export default {
 
   computed: {
     filterMatricule() {
-      (this.camionsMat = this.base.getCamions.filter(
-        (x) => x.agence_id == this.Selected
-      )),
-        (this.voituresMat = this.base.getVoitures.filter(
-          (x) => x.agence_id == this.Selected
-        )),
-        (this.chariotsMat = this.base.getChariots.filter(
-          (x) => x.agence_id == this.Selected
-        )),
-        (this.scootersMat = this.base.getScooters.filter(
-          (x) => x.agence_id == this.Selected
-        ));
+
+        if(this.Selected == "tous"){
+
+            this.camionsMat = this.base.getCamions;
+            this.voituresMat = this.base.getVoitures;
+            this.scootersMat = this.base.getScooters;
+            this.chariotsMat = this.base.getChariots;
+        }
+
+    else{
+            (this.camionsMat = this.base.getCamions.filter(
+              (x) => x.agence_id == this.Selected
+            )),
+              (this.voituresMat = this.base.getVoitures.filter(
+                (x) => x.agence_id == this.Selected
+              )),
+              (this.chariotsMat = this.base.getChariots.filter(
+                (x) => x.agence_id == this.Selected
+              )),
+              (this.scootersMat = this.base.getScooters.filter(
+                (x) => x.agence_id == this.Selected
+              )); }
+
+
       // this.CommentsDb = this.db.comments
     },
     // selectAgence() {
@@ -214,8 +231,8 @@ export default {
     await this.base.fetchBase();
     //await this.base.getAgencesList();
 
-    this.filterMatricule;
     this.getListAgences();
+    this.filterMatricule;
     //this.selectAgence;
   },
   updated() {
