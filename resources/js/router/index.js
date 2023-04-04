@@ -13,6 +13,8 @@ import OneVhlView from "../views/vhl/OneVhlView.vue";
 
 
 
+
+
 const routes = [
     {
         path: "/",
@@ -73,7 +75,10 @@ const routes = [
         name: "vhl-reclam",
         component: Reclam,
         props: true,
-    },
+    }
+
+
+
 ];
 
 const router = createRouter({

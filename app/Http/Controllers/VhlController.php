@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Vhl;
+use App\Statu;
 use App\Agence;
 use App\Comment;
 use Illuminate\Http\Request;
@@ -30,6 +31,11 @@ class VhlController extends Controller
     public function ListComments()
     {
         return  ListResource::collection(Comment::all());
+    }
+
+    public function ListStatus()
+    {
+        return  ListResource::collection(Statu::all());
     }
 
 

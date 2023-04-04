@@ -23,3 +23,5 @@ Route::apiResource('vhls','VhlController');
 Route::get('agences','VhlController@ListAgences');
 
 Route::get('comments','VhlController@ListComments');
+
+Route::get('status','VhlController@ListStatus');

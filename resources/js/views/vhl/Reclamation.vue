@@ -1,5 +1,11 @@
 <template>
 
+
+
+
+
+
+
     Reclamation = {{ id }} <br>
 
 

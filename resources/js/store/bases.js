@@ -1,8 +1,10 @@
 import { defineStore } from "pinia";
 // Import axios to make HTTP requests
 import axios from "axios";
+import { colors, message } from "laravel-mix/src/Log";
 export const useBasesStore = defineStore("bases", {
     state: () => ({
+
         base: [],
         camions: [],
         voitures: [],
@@ -14,7 +16,6 @@ export const useBasesStore = defineStore("bases", {
         searchText: "",
         listCamion: {},
         vhl: {},
-
         agenca: [],
     }),
 
@@ -52,9 +53,7 @@ export const useBasesStore = defineStore("bases", {
                 (x) => x.categorie_id == 4
             ));
         },
-        getcomments() {
-            return (this.commentaires = this.base.comments);
-        },
+
         getAgences() {
             return (this.agences = this.base.agences);
         },
@@ -89,6 +88,34 @@ export const useBasesStore = defineStore("bases", {
                 console.log(error);
             }
         },
+
+        async fetchComments(){
+
+            try{
+                console.log('"fetchComments - BasesPinia"')
+                const resp = await axios.get("/api/comments/")
+                this.commentaires=resp.data
+            }catch(error){
+                console.log(error)
+
+                }
+            },
+
+        async fetchStatus(){
+
+                try{
+                    console.log('"fetchStatus - BasesPinia"')
+                    const resp = await axios.get("/api/status/")
+                    this.status=resp.data;
+                    console.log(this.status)
+                }catch(error){
+                    console.log(error)
+
+                    }
+                },
+
+
+
 
         //    async getAgencesList(){
         //     const agences = new Set();
