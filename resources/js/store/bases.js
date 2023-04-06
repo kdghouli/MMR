@@ -89,30 +89,30 @@ export const useBasesStore = defineStore("bases", {
             }
         },
 
-        async fetchComments(){
+        async fetchComments() {
 
-            try{
+            try {
                 console.log('"fetchComments - BasesPinia"')
                 const resp = await axios.get("/api/comments/")
-                this.commentaires=resp.data
-            }catch(error){
+                this.commentaires = resp.data
+            } catch (error) {
                 console.log(error)
 
-                }
-            },
+            }
+        },
 
-        async fetchStatus(){
+        async fetchStatus() {
 
-                try{
-                    console.log('"fetchStatus - BasesPinia"')
-                    const resp = await axios.get("/api/status/")
-                    this.status=resp.data;
-                    console.log(this.status)
-                }catch(error){
-                    console.log(error)
+            try {
+                console.log('"fetchStatus - BasesPinia"')
+                const resp = await axios.get("/api/status/")
+                this.status = resp.data;
+                console.log(this.status)
+            } catch (error) {
+                console.log(error)
 
-                    }
-                },
+            }
+        },
 
 
 

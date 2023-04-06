@@ -273,19 +273,20 @@ export default {
         // },
     },
 
-    async mounted() {
+    mounted() {
         this.base.fetchComments();
-        await this.base.fetchBase();
+        this.base.fetchBase();
+        this.getListAgences();
 
         //await this.base.getAgencesList();
-        this.base.fetchStatus();
-        this.getListAgences();
+
         this.filterMatricule;
         //this.selectAgence;
+        this.base.fetchStatus();
     },
     updated() {
         //this.base.fetchBase();
-        console.log(this.Selected);
+      //
     },
 };
 </script>

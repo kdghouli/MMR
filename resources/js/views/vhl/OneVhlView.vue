@@ -95,6 +95,7 @@
               </div>
               <div class="modal-body">
                 <form @submit.prevent="createComment()">
+                    <input type="hidden" name="" v-model="vhl_id">
                   <div class="row">
                     <div class="col mb-3">
                       <label for="inputEmail" class="form-label fw-bolder">Etat</label>
@@ -102,7 +103,7 @@
                       <select
                     class="form-select fs-5"
                     aria-label="Default select example"
-                    v-model="selecto"
+                    v-model="statu_id"
 
                 >
 
@@ -111,10 +112,11 @@
                         :key="statu"
                         :value="statu[0]"
 
+
                     >
                         {{ statu[1] }}
                     </option>
-                </select>
+                </select>{{ selecto }}
                     </div>
                   </div>
                   <div class="col-6">
@@ -177,10 +179,11 @@ export default {
       nbComments: "",
       componentComment: false,
       statusList: [],
-      selecto:"",
-      status:"",
+      statu_id:"",
+      vhl_id:"",
       now: new Date(),
-      active:false
+      active:false,
+
     }
   },
   computed: {
@@ -192,7 +195,8 @@ export default {
 
     getListStatus() {
 
-                console.log("getListStatus");
+            console.log("getListStatus");
+            this.vhl_id=this.$route.params.id
             const lista = new Map();
             this.base.status.forEach((x) => lista.set(x.id, x.etat));
             this.statusList = Array.from(lista);
@@ -205,20 +209,24 @@ export default {
   },
 
   methods: {
-    createComment() {
-      let comment = {
-        vhl_id: this.$route.params.id,
+
+
+
+      createComment(){
+        let comment = {
+        vhl_id: this.vhl_id,
         comment: this.comment,
         active: this.active,
-        statu_id:this.selecto
+        statu_id:this.statu_id
       };
       console.log(comment);
+       comment = this;
+       axios.post('/api/comment/create/',{...comment})
+       .then(res => {
+         console.log(res)
+       })
 
-      fetch("/api/status/", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(comment),
-      }).then((res) => res.json())
+
 
     //   fetch(this.url, {
     //     method: "PUT",

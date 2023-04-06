@@ -39,6 +39,40 @@ class VhlController extends Controller
     }
 
 
+
+
+    public function storeComment(Request $request){
+
+
+        $comment = Comment::create([
+            'comment'=>$request->comment,
+            'active'=>$request->active,
+            'vhl_id'=>$request->vhl_id,
+            'statu_id'=>$request->statu_id,
+        ]);
+        return response()->json([
+            'id'=>$comment->id,
+            'comment'=>$comment->comment,
+            'vhl_id'=>$comment->vhl_id,
+            'statu_id'=>$comment->statu_id,
+
+
+        ]);
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+
     /**
      * Show the form for creating a new resource.
      *
