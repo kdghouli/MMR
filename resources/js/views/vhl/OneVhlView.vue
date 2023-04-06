@@ -1,5 +1,5 @@
 <template>
-  <div class="my-1 bg-warning bg-gradient shadow p-1 border border-1 rounded">
+  <div class="my-1 bg-primary-50 bg-gradient shadow p-1 border border-1 rounded">
 
     <h3 class="p-2 fw-semibold border border-danger text-center shadow-sm rounded">
       Fiche de Véhicule Immatriculé : <span class="text-black fw-bolder shadow-sm p-1">{{ vhl[0].matricule }}</span>
@@ -116,7 +116,7 @@
                     >
                         {{ statu[1] }}
                     </option>
-                </select>{{ selecto }}
+                </select>
                     </div>
                   </div>
                   <div class="col-6">
@@ -144,7 +144,7 @@
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                   Fermer
                 </button>
-                <button type="submit" class="btn btn-primary">Enregistrer</button>
+                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Enregistrer</button>
               </div>
                 </form>
               </div>
@@ -224,7 +224,7 @@ export default {
        axios.post('/api/comment/create/',{...comment})
        .then(res => {
          console.log(res)
-       })
+       }).then(() => this.$router.push({ name: 'OneVhlView', params: { id: this.vhl_id } }))
 
 
 
