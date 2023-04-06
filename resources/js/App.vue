@@ -3,7 +3,27 @@
         <nav-bar/>
     </div>
 <div class="row">
-        <router-view />
+
+
+
+
+<router-view v-slot="{ Component }">
+  <transition name="fade">
+    <component :is="Component" />
+  </transition>
+</router-view>
+
+
+
+
+
+
+
+
+
+
+
+
 </div>
     <div class="row">
         <Footer />
@@ -26,5 +46,10 @@ export default {
 </script>
 
 <style>
-
+.fade-enter-active, .fade-leave-active {
+    transition:opacity .5s
+}
+.fade-enter,.fade-leave-active{
+    opacity:0
+}
 </style>
