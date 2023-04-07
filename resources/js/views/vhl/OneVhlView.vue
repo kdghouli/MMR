@@ -1,8 +1,10 @@
 <template>
-  <div class="my-1 bg-primary-50 bg-gradient shadow p-1 border border-1 rounded">
 
+    <commentvhl/>
+  <div class="my-1 bg-primary-50 bg-gradient shadow p-1 border border-1 rounded">
     <h3 class="p-2 fw-semibold border border-danger text-center shadow-sm rounded">
-      Fiche de Véhicule Immatriculé : <span class="text-black fw-bolder shadow-sm p-1">{{ vhl[0].matricule }}</span>
+      Fiche de Véhicule Immatriculé :
+      <span class="text-black fw-bolder shadow-sm p-1">{{ vhl[0].matricule }}</span>
       <span
         ><button
           class="btn btn-primary btn-sm float-end text-warning m-1"
@@ -95,33 +97,34 @@
               </div>
               <div class="modal-body">
                 <form @submit.prevent="createComment()">
-                    <input type="hidden" name="" v-model="vhl_id">
+                  <input type="hidden" name="" v-model="vhl_id" />
                   <div class="row">
                     <div class="col mb-3">
                       <label for="inputEmail" class="form-label fw-bolder">Etat</label>
 
                       <select
-                    class="form-select fs-5"
-                    aria-label="Default select example"
-                    v-model="statu_id"
-
-                >
-
-                    <option
-                        v-for="statu in statusList"
-                        :key="statu"
-                        :value="statu[0]"
-
-
-                    >
-                        {{ statu[1] }}
-                    </option>
-                </select>
+                        class="form-select fs-5"
+                        aria-label="Default select example"
+                        v-model="statu_id"
+                      >
+                        <option
+                          v-for="statu in statusList"
+                          :key="statu"
+                          :value="statu[0]"
+                        >
+                          {{ statu[1] }}
+                        </option>
+                      </select>
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="mb-3 form-check form-switch">
-                      <input class="form-check-input" type="checkbox" id="switch" v-model="active" />
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        id="switch"
+                        v-model="active"
+                      />
                       <label class="form-check-label" for="switch"
                         >Activer l'alerte
                       </label>
@@ -136,19 +139,24 @@
                       placeholder="Laissez-nous un commentaire !"
                       id="commentaire"
                       style="height: 200px"
-                      v-model=comment
+                      v-model="comment"
                     ></textarea>
                   </div>
 
                   <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                  Fermer
-                </button>
-                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Enregistrer</button>
-              </div>
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-bs-dismiss="modal"
+                    >
+                      Fermer
+                    </button>
+                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
+                      Enregistrer
+                    </button>
+                  </div>
                 </form>
               </div>
-
             </div>
           </div>
         </div>
@@ -160,15 +168,25 @@
         <div v-if="componentComment">
           <!-- <CreateCommentView :vhl="vhl" @closing="componentComment=false"/> -->
         </div>
+
+
       </div>
     </div>
   </div>
 </template>
 
 <script>
-//import CreateCommentView from "./CreateCommentView.vue";
+
+import Commentvhl from "./commentvhl";
 import { useBasesStore } from "../../store/bases.js";
+//import commentVhl from "./../../commentVhl.vue";
+
 export default {
+
+    components: {
+    Commentvhl
+},
+
   data() {
     return {
       base: useBasesStore(),
@@ -179,85 +197,73 @@ export default {
       nbComments: "",
       componentComment: false,
       statusList: [],
-      statu_id:"",
-      vhl_id:"",
+      statu_id: "",
+      vhl_id: "",
       now: new Date(),
-      active:false,
-
-    }
+      active: false,
+    };
   },
   computed: {
     vhl() {
       return (this.vhl = this.base.base.filter((x) => x.id == this.$route.params.id));
     },
 
-
-
     getListStatus() {
-
-            console.log("getListStatus");
-            this.vhl_id=this.$route.params.id
-            const lista = new Map();
-            this.base.status.forEach((x) => lista.set(x.id, x.etat));
-            this.statusList = Array.from(lista);
-            return console.log(this.statusList);
-        },
-
-
-
-
+      console.log("getListStatus");
+      this.vhl_id = this.$route.params.id;
+      const lista = new Map();
+      this.base.status.forEach((x) => lista.set(x.id, x.etat));
+      this.statusList = Array.from(lista);
+      return console.log(this.statusList);
+    },
   },
 
   methods: {
-
-
-
-      createComment(){
-        let comment = {
+    createComment() {
+      let comment = {
         vhl_id: this.vhl_id,
         comment: this.comment,
         active: this.active,
-        statu_id:this.statu_id
+        statu_id: this.statu_id,
       };
       console.log(comment);
-       comment = this;
-       axios.post('/api/comment/create/',{...comment})
-       .then(res => {
-         console.log(res)
-       }).then(() => this.$router.push({ name: 'OneVhlView', params: { id: this.vhl_id } }))
+      comment = this;
+      axios
+        .post("/api/comment/create/", { ...comment })
+        .then((res) => {
+          console.log(res);
+        })
+        .then(() =>
+          this.$router.push({ name: "OneVhlView", params: { id: this.vhl_id } })
+        );
 
-
-
-    //   fetch(this.url, {
-    //     method: "PUT",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: JSON.stringify(this.camion),
-    //   })
-    //     .then((res) => res.json())
-    //     .then((data) => this.$router.push("/camion"))
-    //     .catch((err) => console.log(err.message));
-    // },
-    //   async mounted() {
-    //     // const data = await this.axios.get(
-    //     //  // `api/vhls/${this.$route.params.id}`
-    //     //  `api/vhls/${this.$route.params.id}`
-    //     // );
-    //    // this.getOneVhl();
-    //     // console.log(this.vhl);
-    //     // this.agenceName=this.vhl.agence.agence
-    //     // this.comments=this.vhl.comments
-    //     // this.nbComments=this.vhl.comments.length
-    //     // console.log(this.nbComments)
-    //   },
-  }},
-  mounted(){
-
-this.getListStatus;
-
+      //   fetch(this.url, {
+      //     method: "PUT",
+      //     headers: { "Content-Type": "application/json" },
+      //     body: JSON.stringify(this.camion),
+      //   })
+      //     .then((res) => res.json())
+      //     .then((data) => this.$router.push("/camion"))
+      //     .catch((err) => console.log(err.message));
+      // },
+      //   async mounted() {
+      //     // const data = await this.axios.get(
+      //     //  // `api/vhls/${this.$route.params.id}`
+      //     //  `api/vhls/${this.$route.params.id}`
+      //     // );
+      //    // this.getOneVhl();
+      //     // console.log(this.vhl);
+      //     // this.agenceName=this.vhl.agence.agence
+      //     // this.comments=this.vhl.comments
+      //     // this.nbComments=this.vhl.comments.length
+      //     // console.log(this.nbComments)
+      //   },
+    },
   },
-}
+  mounted() {
+    this.getListStatus;
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

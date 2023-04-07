@@ -42,8 +42,8 @@
           <span class="fw-lighter ms-4 me-auto align-bottom" style="font-size: 9px">{{
             camion.intitule.nom
           }}</span>
-          <span class="badge bg-success rounded-pill" v-if="calcComments(camion.id)">{{
-            calcComments(camion.id)
+          <span class="badge bg-success rounded-pill" v-if=camion.comment.length>{{
+            camion.comment.length
           }}</span>
         </li>
       </ul>
@@ -79,8 +79,8 @@
           <span class="fw-lighter ms-2" style="font-size: 9px"
             >{{ voiture.type }}&nbsp;&nbsp;&nbsp;&nbsp;{{ voiture.utilisateur }}</span
           >
-          <span class="badge bg-primary rounded-pill" v-if="calcComments(voiture.id)">{{
-            calcComments(voiture.id)
+          <span class="badge bg-primary rounded-pill" v-if=voiture.comment.length>{{
+            voiture.comment.length
           }}</span>
         </li>
       </ul>
@@ -119,8 +119,8 @@
             class="fw-lighter ms-4 me-auto align-bottom text-truncate"
             style="font-size: 9px"
             >{{ chariot.marque }}</span
-          ><span class="badge bg-warning rounded-pill" v-if="calcComments(chariot.id)">{{
-            calcComments(chariot.id)
+          ><span class="badge bg-warning rounded-pill" v-if="chariot.comment.length">{{
+            chariot.comment.length
           }}</span>
         </li>
       </ul>
@@ -129,14 +129,14 @@
 
     <!-- Scooters -->
 
-    <p class="pt-2">
+    <p class="py-2">
       Nombre des
       <span class="fw-bolder"
         ><img class="me-1" src="" alt="" style="width: 30px" /> Scooters : </span
       ><span class="badge rounded-pill bg-danger ms-1">{{ scootersMat.length }}</span>
     </p>
 
-    <div class="row row-cols-lg-3 row-cols-md-2">
+    <div class="row row-cols-lg-3 row-cols-md-2 mb-2">
       <ul v-for="scooter in scootersMat" class="list-group" :key="scooter">
         <li
           class="list-group-item list-group-item-action d-flex justify-content-between align-items-center list-group-item-danger mb-1 shadow-sm"
@@ -159,8 +159,8 @@
             class="fw-lighter ms-4 me-auto align-bottom text-truncate"
             style="font-size: 10px"
             >{{ scooter.utilisateur }}</span
-          ><span class="badge bg-danger rounded-pill" v-if="calcComments(scooter.id)">{{
-            calcComments(scooter.id)
+          ><span class="badge bg-danger rounded-pill" v-if=scooter.comment.length>{{
+            scooter.comment.length
           }}</span>
         </li>
       </ul>
@@ -188,10 +188,10 @@ export default {
     };
   },
   methods: {
-    calcComments(ddd) {
-      const nbComments = this.CommentsDb.filter((sel) => sel.vhl_id == ddd);
-      return nbComments.length;
-    },
+    // calcComments(ddd) {
+    //   const nbComments = this.CommentsDb.filter((sel) => sel.vhl_id == ddd);
+    //   return nbComments.length;
+    // },
 
 
   },
@@ -235,8 +235,8 @@ export default {
     // },
   },
 
-  mounted() {
-    this.base.fetchBase();
+  async mounted() {
+    await this.base.fetchBase();
     this.getListAgences;
     this.filterMatricule;
     this.base.fetchComments();
@@ -244,7 +244,7 @@ export default {
     //await this.base.getAgencesList();
 
     //this.selectAgence;
-    this.base.fetchStatus();
+   // this.base.fetchStatus();
   },
 
 };
