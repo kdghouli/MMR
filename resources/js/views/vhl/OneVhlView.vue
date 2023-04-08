@@ -1,6 +1,4 @@
 <template>
-
-    <commentvhl/>
   <div class="my-1 bg-primary-50 bg-gradient shadow p-1 border border-1 rounded">
     <h3 class="p-2 fw-semibold border border-danger text-center shadow-sm rounded">
       Fiche de Véhicule Immatriculé :
@@ -165,27 +163,49 @@
 
         <!-- <router-link class="btn btn-warning float-end" :to="{name:'EditCamionView',params:{id:$route.params.id}}"> modifier </router-link> -->
         <!-- <button class="btn btn-danger me-2" @click="componentComment=!componentComment"> + Commentaire </button> -->
-        <div v-if="componentComment">
-          <!-- <CreateCommentView :vhl="vhl" @closing="componentComment=false"/> -->
+        <div class="row m-2 bg-light bg-gradient" v-if="vhlo.comment.length">
+          <div v-for="commo in vhlo.comment">
+            <!-- CommentsVhl -->
+
+            <div class="card mb-3" style="max-width: 940px">
+              <div class="row g-0">
+                <div class="col">
+                  <img src="" class="img-fluid rounded-start" alt="..." />
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ statusList[commo.statu_id]}}</h5>
+                    <p class="card-text">
+                        {{ commo.comment }}
+                    </p>
+                    <p class="card-text">
+                      <small class="text-muted">Last updated 3 mins ago</small>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- fin CommentsVhl -->
+          </div>
         </div>
 
-
+        <!-- <CreateCommentView :vhl="vhl" @closing="componentComment=false"/> -->
       </div>
     </div>
   </div>
 </template>
 
 <script>
-
-import Commentvhl from "./commentvhl";
+import CommentsVhl from "./CommentsVhl";
 import { useBasesStore } from "../../store/bases.js";
+
 //import commentVhl from "./../../commentVhl.vue";
 
 export default {
-
-    components: {
-    Commentvhl
-},
+  components: {
+    CommentsVhl,
+  },
 
   data() {
     return {
@@ -234,7 +254,10 @@ export default {
           console.log(res);
         })
         .then(() =>
-          this.$router.push({ name: "OneVhlView", params: { id: this.vhl_id } })
+          this.$router.push({
+            name: "OneVhlView",
+            params: { id: this.vhl_id },
+          })
         );
 
       //   fetch(this.url, {

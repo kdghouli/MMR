@@ -244,7 +244,7 @@ export default {
     //await this.base.getAgencesList();
 
     //this.selectAgence;
-   // this.base.fetchStatus();
+   await this.base.fetchStatus();
   },
 
 };
