@@ -13,6 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/{any}', 'SinglePageController@index')->where('any', '.*');
+Route::get('/{any}', 'VhlController@view')->where('any', '.*');
 
 

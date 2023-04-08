@@ -8,8 +8,17 @@ class Statu extends Model
 {
 
     protected $hidden=['created_at','updated_at'];
+
+
     public function vhls()
     {
         return $this->hasMany(Vhl::class);
     }
+
+    public function commets()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+
 }

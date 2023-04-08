@@ -17,6 +17,13 @@ class VhlController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function view()
+    {
+
+        return view('app');
+
+    }
     public function index()
     {
 
@@ -30,7 +37,7 @@ class VhlController extends Controller
     }
     public function ListComments()
     {
-        return  ListResource::collection(Comment::all());
+        return  ListResource::collection(Comment::with('vhl')->get());
     }
 
     public function ListStatus()
