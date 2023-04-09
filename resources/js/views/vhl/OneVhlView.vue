@@ -67,7 +67,7 @@
             <ul class="list-group" v-for="com in vhlo.comment">
               <li class="list-group-item d-flex justify-content-between align-items-center">
                 {{ com.comment }}
-                <span class="badge bg-primary rounded-pill">{{ getHumanDate(com.created_at)  }}</span>
+                <span class="badge bg-primary rounded-pill ">{{ getHumanDate(com.created_at)  }}</span>
               </li>
 
             </ul>
@@ -165,7 +165,10 @@
             </div>
           </div>
         </div>
+            <!-- fin modal -->
 
+
+            
         <!-- <p v-for="comment in comments" :key="comment.index">Type : {{ comment.comment }}</p> -->
 
         <!-- <router-link class="btn btn-warning float-end" :to="{name:'EditCamionView',params:{id:$route.params.id}}"> modifier </router-link> -->
@@ -296,8 +299,10 @@ export default {
                 return moment(date).locale('fr').startOf('day').fromNow();
             }
   },
-  mounted() {
+ async mounted() {
     this.getListStatus;
+    await this.base.fetchBase();
+
   },
 };
 </script>
