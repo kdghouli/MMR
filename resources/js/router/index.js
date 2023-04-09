@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Main from "../views/Main.vue";
-import Camion from "../views/vhl/Camion.vue";
-import Voiture from "../views/vhl/Voiture.vue";
-import Scooter from "../views/vhl/Scooter.vue";
-import Chariot from "../views/vhl/Chariot.vue";
+import Camion from "../views/vhl/category/Camion.vue";
+import Voiture from "../views/vhl/category/Voiture.vue";
+import Scooter from "../views/vhl/category/Scooter.vue";
+import Chariot from "../views/vhl/category/Chariot.vue";
 import Creation from "../views/vhl/Creation.vue";
 import Show from "../views/vhl/Show.vue";
 import Edit from "../views/vhl/Update.vue";

@@ -1,10 +1,10 @@
 <template>
   <div>
     <div class="row mt-2">
-      <h3 class="col-6 mt-1">Liste des véhicules Agence :</h3>
+      <h3 class="col-md-6 mt-1">Liste des véhicules Agence :</h3>
       <div class="col-5">
         <select class="form-select fs-5" v-model="Selected" @click="filterMatricule">
-          <option value="tous" selected>Tous</option>
+          <option value="0" selected >Tous</option>
           <option v-for="agence in agencaList" :key="agence" :value="agence[0]">
             {{ agence[1] }}
           </option>
@@ -182,7 +182,7 @@ export default {
       scootersMat: {},
       chariotsMat: {},
       CommentsDb: useBasesStore().commentaires,
-      Selected: Math.floor(Math.random() * 11),
+      Selected: 0,
       agenca: {},
       agencaList: null,
     };
@@ -199,7 +199,7 @@ export default {
   computed: {
 
     filterMatricule() {
-      if (this.Selected == "tous") {
+      if (this.Selected == "0") {
         this.camionsMat = this.base.getCamions;
         this.voituresMat = this.base.getVoitures;
         this.scootersMat = this.base.getScooters;

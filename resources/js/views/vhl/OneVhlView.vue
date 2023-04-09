@@ -64,6 +64,13 @@
             <p class="text-center fw-bolder text-dark fs-5 text-light border-bottom">
               Historique
             </p>
+            <ul class="list-group" v-for="com in vhlo.comment">
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                {{ com.comment }}
+                <span class="badge bg-primary rounded-pill">{{ getHumanDate(com.created_at)  }}</span>
+              </li>
+
+            </ul>
           </div>
         </div>
 
@@ -167,19 +174,19 @@
           <div v-for="commo in vhlo.comment">
             <!-- CommentsVhl -->
 
-            <div class="card mb-3" style="max-width: 940px">
+            <div class="card my-1" style="max-width: 940px">
               <div class="row g-0">
-                <div class="col">
-                  <img src="" class="img-fluid rounded-start" alt="..." />
+                <div class="col align-self-center ">
+                  <img src="\images\discuter.png" class="img-fluid rounded ms-5" alt="..." style="width: 100px;" />
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-9">
                   <div class="card-body">
                     <h5 class="card-title">{{ statusList[commo.statu_id]}}</h5>
                     <p class="card-text">
                         {{ commo.comment }}
                     </p>
                     <p class="card-text">
-                      <small class="text-muted">Last updated 3 mins ago</small>
+                      <small class="text-muted">{{ getHumanDate(commo.created_at) }}</small>
                     </p>
                   </div>
                 </div>
@@ -199,6 +206,7 @@
 <script>
 import CommentsVhl from "./CommentsVhl";
 import { useBasesStore } from "../../store/bases.js";
+import moment from 'moment';
 
 //import commentVhl from "./../../commentVhl.vue";
 
@@ -260,6 +268,7 @@ export default {
           })
         );
 
+
       //   fetch(this.url, {
       //     method: "PUT",
       //     headers: { "Content-Type": "application/json" },
@@ -282,6 +291,10 @@ export default {
       //     // console.log(this.nbComments)
       //   },
     },
+    getHumanDate (date) {
+                //return moment(date, 'YYYY-MM-DD').format('DD/MM/YYYY')
+                return moment(date).locale('fr').startOf('day').fromNow();
+            }
   },
   mounted() {
     this.getListStatus;

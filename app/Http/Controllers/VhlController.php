@@ -18,7 +18,7 @@ class VhlController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     public function view()
+     public function viewMain()
     {
 
         return view('app');
