@@ -1,30 +1,16 @@
 <template>
     <div class="row">
-        <nav-bar/>
+        <nav-bar />
     </div>
-<div class="row">
 
+    <div class="row">
+        <router-view v-slot="{ Component }">
+            <transition name="fade">
+                <component :is="Component" />
+            </transition>
+        </router-view>
+    </div>
 
-
-
-<router-view v-slot="{ Component }">
-  <transition name="fade">
-    <component :is="Component" />
-  </transition>
-</router-view>
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
     <div class="row">
         <Footer />
     </div>
@@ -46,10 +32,12 @@ export default {
 </script>
 
 <style>
-.fade-enter-active, .fade-leave-active {
-    transition:opacity .5s
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.5s;
 }
-.fade-enter,.fade-leave-active{
-    opacity:0
+.fade-enter,
+.fade-leave-active {
+    opacity: 0;
 }
 </style>

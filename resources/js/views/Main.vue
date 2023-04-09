@@ -6,6 +6,7 @@
 </template>
 
 <script >
+
 import MasterView from "../components/MasterView.vue";
 
 
