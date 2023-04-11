@@ -13,6 +13,7 @@ export const useBasesStore = defineStore("bases", {
         agences: [],
         commentaires: [],
         status: [],
+        intitules:[],
         searchText: "",
         listCamion: {},
         vhl: {},
@@ -62,13 +63,22 @@ export const useBasesStore = defineStore("bases", {
         },
 
         optionStatus(){
-            console.log("optionStatus-getListStatus");
-      this.vhl_id = this.$route.params.id;
+
+     console.log("optionStatus-getListStatus");
       const lista = new Map();
-      this.base.status.forEach((x) => lista.set(x.id, x.etat));
-      this.statusList = Array.from(lista);
-      return console.log(this.statusList);
-        }
+      this.status.forEach((x) => lista.set(x.id, x.etat));
+      return Array.from(lista);
+
+        },
+
+        optionIntitules(){
+
+            console.log("optionIntitules-getListStatus");
+             const lista = new Map();
+             this.intitules.forEach((x) => lista.set(x.id, x.nom));
+             return Array.from(lista);
+
+               }
 
         // async searchMatricule(){
         //   try{
@@ -117,6 +127,19 @@ export const useBasesStore = defineStore("bases", {
                 const resp = await axios.get("/api/status/")
                 this.status = resp.data;
                 console.log(this.status)
+            } catch (error) {
+                console.log(error)
+
+            }
+        },
+
+        async fetchIntitules() {
+
+            try {
+                console.log('"fetchIntitules - BasesPinia"')
+                const resp = await axios.get("/api/intitule/")
+                this.intitules = resp.data;
+                console.log(this.intitules)
             } catch (error) {
                 console.log(error)
 

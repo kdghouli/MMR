@@ -26,4 +26,9 @@ Route::get('comments','VhlController@ListComments');
 
 Route::get('status','VhlController@ListStatus');
 
+Route::get('intitule','VhlController@ListIntitules');
+
 Route::post('/comment/create' ,'VhlController@storeComment');
+
+
+

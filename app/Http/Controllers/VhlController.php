@@ -9,6 +9,7 @@ use App\Comment;
 use Illuminate\Http\Request;
 use App\Http\Resources\VhlResource;
 use App\Http\Resources\ListResource;
+use App\Intitule;
 
 class VhlController extends Controller
 {
@@ -43,6 +44,10 @@ class VhlController extends Controller
     public function ListStatus()
     {
         return  ListResource::collection(Statu::all());
+    }
+    public function ListIntitules()
+    {
+        return  ListResource::collection(Intitule::with('vhls')->get());
     }
 
 
