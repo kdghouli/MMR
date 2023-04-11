@@ -61,6 +61,15 @@ export const useBasesStore = defineStore("bases", {
             return (this.status = this.base.status);
         },
 
+        optionStatus(){
+            console.log("optionStatus-getListStatus");
+      this.vhl_id = this.$route.params.id;
+      const lista = new Map();
+      this.base.status.forEach((x) => lista.set(x.id, x.etat));
+      this.statusList = Array.from(lista);
+      return console.log(this.statusList);
+        }
+
         // async searchMatricule(){
         //   try{
 

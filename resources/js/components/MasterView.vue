@@ -263,11 +263,14 @@
                                         class="form-label fw-bolder"
                                         >Catégorie</label
                                     >
-                                    <input
-                                        type="text"
-                                        class="form-control"
-                                        v-model="categorie"
-                                    />
+                                    <select class="form-select fs-5" name="" id="" v-model="categorie">
+                                    <option value="1">Camion</option>
+                                    <option value="2">Voiture</option>
+                                    <option value="3">Scooter</option>
+                                    <option value="4">Chariot</option>
+                                    <option value="5">Autre</option>
+
+                                    </select>
                                 </div>
                                 <div class="col-8 mb-2">
                                     <label
@@ -331,11 +334,19 @@
                                 <label for="statu" class="form-label fw-bolder"
                                     >Etat Acuel</label
                                 >
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    v-model="statu"
-                                />
+                                <select
+                        class="form-select fs-5"
+                        aria-label="Default select example"
+                        v-model="statu_id"
+                      >
+                        <option
+                          v-for="statu in statusList"
+                          :key="statu"
+                          :value="statu[0]"
+                        >
+                          {{ statu[1] }}
+                        </option>
+                      </select>
                             </div>
                             <div class="col mb-4">
                                 <label
@@ -390,6 +401,10 @@ export default {
       CommentsDb: useBasesStore().commentaires,
       Selected: 0,
       agenca: {},
+      statusList: [],
+      statu_id: "",
+      vhl_id: "",
+
       agencaList: null,
 
     };
@@ -428,19 +443,19 @@ export default {
 
       // this.CommentsDb = this.db.comments
     },
-    optionsTest() {
-
-
-     this.camionsMat.forEach(dat =>
-  {
-    result.push({"nim":dat.matricule, "nama": dat.marque})
-  }
-);
-
-
-
-
+    getListStatus() {
+      console.log("getListStatus");
+      this.vhl_id = this.$route.params.id;
+      const lista = new Map();
+      this.base.status.forEach((x) => lista.set(x.id, x.etat));
+      this.statusList = Array.from(lista);
+      return console.log(this.statusList);
     },
+
+
+
+
+
 
 
 
