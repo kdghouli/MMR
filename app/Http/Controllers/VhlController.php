@@ -74,14 +74,6 @@ class VhlController extends Controller
 
 
 
-
-
-
-
-
-
-
-
     }
 
 
@@ -103,7 +95,26 @@ class VhlController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $vhl = Vhl::create([
+            'matricule'=>$request->matricule,
+            'marque'=>$request->marque,
+            'date_mc'=>$request->date_mc,
+
+            'agence_id'=>$request->agence_id,
+            'statu_id'=>$request->statu_id,
+            'categorie_id'=>$request->categorie_id,
+
+            'intitule_id'=>$request->intitule_id,
+            'utilisateur'=>$request->utilisateur,
+
+
+        ]);
+
+
+
+
+
     }
 
     /**

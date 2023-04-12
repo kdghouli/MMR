@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="row mt-2">
-      <h3 class="col-md-6 mt-1">Liste des véhicules Agence : {{ intituleListe }}</h3>
+      <h3 class="col-md-6 mt-1">Liste des véhicules Agence :</h3>
       <div class="col-5">
         <select class="form-select fs-5" v-model="Selected" @click="filterMatricule">
           <option value="0" selected>Tous</option>
@@ -166,7 +166,7 @@
 
     <!-- ------modal -->
     <div
-      class="modal fade"
+      class="modal2 fade"
       id="staticBackdrop"
       data-bs-backdrop="static"
       data-bs-keyboard="false"
@@ -183,26 +183,26 @@
             <button
               type="button"
               class="btn-close"
-              data-bs-dismiss="modal"
+              data-bs-dismiss="modal2"
               aria-label="Close"
             ></button>
           </div>
           <div class="modal-body">
-            <form>
+            <form @submit.prevent="createVhl()">
               <div class="row">
                 <div class="col-6 mb-2">
                   <label for="matricule" class="form-label fw-bolder">Matricule</label>
-                  <input type="text" class="form-control" v-model="matricule" />
+                  <input type="text" class="form-control" v-model="matriculeIn" />
                 </div>
                 <div class="col-6 mb-2">
                   <label for="marque" class="form-label fw-bolder">Marque</label>
-                  <input type="text" class="form-control" v-model="marque" />
+                  <input type="text" class="form-control" v-model="marqueIn" />
                 </div>
               </div>
               <div class="row">
                 <div class="col-4 mb-2">
                   <label for="categorie" class="form-label fw-bolder">Catégorie</label>
-                  <select class="form-select fs-5" name="" id="" v-model="categorie">
+                  <select class="form-select fs-5" name="" id="" v-model="categorieIn">
                     <option value="1">Camion</option>
                     <option value="2">Voiture</option>
                     <option value="3">Scooter</option>
@@ -216,7 +216,7 @@
                   <select
                     class="form-select fs-5"
                     aria-label="Default select example"
-                    v-model="agenceCreate"
+                    v-model="agenceIn"
                   >
                     <option v-for="agence in agencaList" :key="agence" :value="agence[0]">
                       {{ agence[1] }}
@@ -228,14 +228,14 @@
               <div class="row">
                 <div class="col-4 mb-2">
                   <label for="date_mc" class="form-label fw-bolder">Date MC</label>
-                  <input type="date" class="form-control" v-model="date_mc" />
+                  <input type="date" class="form-control" v-model="dateIn" />
                 </div>
                 <div class="col-8 mb-2">
                   <label for="intitule" class="form-label fw-bolder">Propriétaire</label>
                   <select
                     class="form-select fs-5"
                     aria-label="Default select example"
-                    v-model="intitule_id"
+                    v-model="intituleIn"
                   >
 
                   <option v-for="intitule in intituleListe" :key="intitule" :value="intitule[0]">
@@ -250,7 +250,7 @@
                 <select
                   class="form-select fs-5"
                   aria-label="Default select example"
-                  v-model="statu_id"
+                  v-model="statuIn"
                 >
                   <option v-for="statu in statusList" :key="statu" :value="statu[0]">
                     {{ statu[1] }}
@@ -259,7 +259,7 @@
               </div>
               <div class="col mb-4">
                 <label for="utilisateur" class="form-label fw-bolder">Utilisateur</label>
-                <input type="text" class="form-control" v-model="utilisateur" />
+                <input type="text" class="form-control" v-model="utilisateurIn" />
               </div>
 
               <div class="modal-footer">
@@ -300,6 +300,15 @@ export default {
       intituleListe:useBasesStore().optionIntitules,
 
       agencaList: null,
+
+        matriculeIn:"",
+        marqueIn:"",
+        dateIn:"",
+        agenceIn:"",
+        statuIn:"",
+        intituleIn:"",
+        categorieIn:"",
+        utilisateurIn:"",
     };
   },
   methods: {
@@ -311,6 +320,7 @@ export default {
 
   computed: {
     filterMatricule() {
+        console.log('filterMatricule')
       if (this.Selected == "0") {
         this.camionsMat = this.base.getCamions;
         this.voituresMat = this.base.getVoitures;
@@ -343,6 +353,7 @@ export default {
     // },
 
     async getListAgences() {
+      console.log('getListAgences')
       const respAg = await axios.get("/api/agences");
       this.agenca = respAg.data;
       const agences = new Map();
@@ -350,24 +361,57 @@ export default {
       this.agencaList = Array.from(agences);
       return console.log(this.agencaList);
     },
+
+
+        createVhl() {
+            console.log('createVhl')
+      let vhl = {
+        matricule: this.matriculeIn,
+        marque: this.marqueIn,
+        date_mc:this.dateIn,
+        agence_id:this.agenceIn,
+        statu_id: this.statuIn,
+        intitule_id:this.intituleIn,
+        categorie_id:this.categorieIn,
+        utilisateur:this.utilisateurIn,
+
+      };
+      console.log(vhl);
+      console.log('createVhl -millieu')
+      vhl = this;
+      axios
+        .post("/api/vhls", { ...vhl })
+        .then((res) => {
+          console.log(res);
+        })
+        .then(() => this.$router.push('/'))
+                .catch(err => console.log(err.message))
+
+
+
+
+
+
+        console.log('createVhl - ok')
+
     // selectAgence() {
     //   this.camionsMat = this.camionsMat.filter(x=>x.agence_id == this.Selected)
 
     // },
-  },
+  }},
 
   async mounted() {
-    await this.base.fetchBase();
-   await this.getListAgences;
-   await this.filterMatricule;
+   await this.base.fetchBase();
    await this.base.fetchComments();
     await this.base.fetchIntitules()
-    await useBasesStore().optionIntitules;
-    //await this.base.getAgencesList();
+   await this.base.fetchStatus();
+   await this.getListAgences;
+     this.filterMatricule;
 
-    //this.selectAgence;
-    await this.base.fetchStatus();
+     //await this.base.getAgencesList();
+
+//     //this.selectAgence;
   },
-};
+}
 </script>
 <style></style>

@@ -62,7 +62,10 @@ export const useBasesStore = defineStore("bases", {
             return (this.status = this.base.status);
         },
 
-        optionStatus(){
+
+        // LES OPTIONS SELECT
+
+        optionStatus(state){
 
      console.log("optionStatus-getListStatus");
       const lista = new Map();
@@ -71,14 +74,17 @@ export const useBasesStore = defineStore("bases", {
 
         },
 
-        optionIntitules(){
+        optionIntitules(state){
 
-            console.log("optionIntitules-getListStatus");
+            console.log("optionIntitules-getListeIntitule");
+
              const lista = new Map();
-             this.intitules.forEach((x) => lista.set(x.id, x.nom));
+             state.intitules.forEach((x) => lista.set(x.id, x.nom));
              return Array.from(lista);
 
                }
+
+
 
         // async searchMatricule(){
         //   try{
@@ -112,7 +118,7 @@ export const useBasesStore = defineStore("bases", {
 
             try {
                 console.log('"fetchComments - BasesPinia"')
-                const resp = await axios.get("/api/comments/")
+                const resp = await axios.get("/api/comments")
                 this.commentaires = resp.data
             } catch (error) {
                 console.log(error)
@@ -124,7 +130,7 @@ export const useBasesStore = defineStore("bases", {
 
             try {
                 console.log('"fetchStatus - BasesPinia"')
-                const resp = await axios.get("/api/status/")
+                const resp = await axios.get("/api/status")
                 this.status = resp.data;
                 console.log(this.status)
             } catch (error) {
@@ -137,7 +143,7 @@ export const useBasesStore = defineStore("bases", {
 
             try {
                 console.log('"fetchIntitules - BasesPinia"')
-                const resp = await axios.get("/api/intitule/")
+                const resp = await axios.get("/api/intitule")
                 this.intitules = resp.data;
                 console.log(this.intitules)
             } catch (error) {

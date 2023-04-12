@@ -35,7 +35,7 @@
             <li><a class="dropdown-item" href="#">Accident</a></li>
             <li><a class="dropdown-item" href="#">Plan annuel</a></li>
             <li><hr class="dropdown-divider"></li>
-            <router-link class="dropdown-item" data-bs-toggle="modal"
+            <router-link class="dropdown-item" data-bs-toggle="modal2"
           data-bs-target="#staticBackdrop" to="#">Création Véhicule</router-link>
           </ul>
         </li>

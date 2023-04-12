@@ -168,7 +168,7 @@
             <!-- fin modal -->
 
 
-            
+
         <!-- <p v-for="comment in comments" :key="comment.index">Type : {{ comment.comment }}</p> -->
 
         <!-- <router-link class="btn btn-warning float-end" :to="{name:'EditCamionView',params:{id:$route.params.id}}"> modifier </router-link> -->
@@ -300,8 +300,8 @@ export default {
             }
   },
  async mounted() {
-    this.getListStatus;
-    await this.base.fetchBase();
+    //this.getListStatus;
+   // await this.base.fetchBase();
 
   },
 };
