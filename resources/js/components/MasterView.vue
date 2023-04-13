@@ -163,10 +163,9 @@
       </ul>
     </div>
 
-
     <!-- ------modal -->
     <div
-      class="modal2 fade"
+      class="modal fade"
       id="staticBackdrop"
       data-bs-backdrop="static"
       data-bs-keyboard="false"
@@ -183,7 +182,7 @@
             <button
               type="button"
               class="btn-close"
-              data-bs-dismiss="modal2"
+              data-bs-dismiss="modal"
               aria-label="Close"
             ></button>
           </div>
@@ -237,10 +236,13 @@
                     aria-label="Default select example"
                     v-model="intituleIn"
                   >
-
-                  <option v-for="intitule in intituleListe" :key="intitule" :value="intitule[0]">
-                    {{ intitule[1] }}
-                  </option>
+                    <option
+                      v-for="intitule in intituleListe"
+                      :key="intitule"
+                      :value="intitule[0]"
+                    >
+                      {{ intitule[1] }}
+                    </option>
                   </select>
                 </div>
               </div>
@@ -297,21 +299,55 @@ export default {
       statusList: useBasesStore().optionStatus,
       statu_id: "",
       vhl_id: "",
-      intituleListe:useBasesStore().optionIntitules,
+      intituleListe: useBasesStore().optionIntitules,
 
       agencaList: null,
 
-        matriculeIn:"",
-        marqueIn:"",
-        dateIn:"",
-        agenceIn:"",
-        statuIn:"",
-        intituleIn:"",
-        categorieIn:"",
-        utilisateurIn:"",
+      matriculeIn: "",
+      marqueIn: "",
+      dateIn: "",
+      agenceIn: "",
+      statuIn: "",
+      intituleIn: "",
+      categorieIn: "",
+      utilisateurIn: "",
     };
   },
   methods: {
+
+
+
+
+    createVhl() {
+      console.log("createVhl");
+      let vhli = {
+        matricule: this.matriculeIn,
+        marque: this.marqueIn,
+        date_mc: this.dateIn,
+        agence_id: this.agenceIn,
+        statu_id: this.statuIn,
+        intitule_id: this.intituleIn,
+        categorie_id: this.categorieIn,
+        utilisateur: this.utilisateurIn,
+      };
+      console.log(vhli);
+      console.log("createVhl -millieu");
+      vhli = this;
+      axios
+        .post("api/creata", {vhli },{headers:{ 'Content-Type': 'application/json'}})
+        .then((res) => {
+          console.log(res);
+        })
+        .then(() => this.$router.push("/"))
+        .catch((err) => console.log(err.message));
+
+      console.log("createVhl - ok");
+
+      // selectAgence() {
+      //   this.camionsMat = this.camionsMat.filter(x=>x.agence_id == this.Selected)
+
+      // },
+    },
     // calcComments(ddd) {
     //   const nbComments = this.CommentsDb.filter((sel) => sel.vhl_id == ddd);
     //   return nbComments.length;
@@ -320,7 +356,7 @@ export default {
 
   computed: {
     filterMatricule() {
-        console.log('filterMatricule')
+      console.log("filterMatricule");
       if (this.Selected == "0") {
         this.camionsMat = this.base.getCamions;
         this.voituresMat = this.base.getVoitures;
@@ -353,7 +389,7 @@ export default {
     // },
 
     async getListAgences() {
-      console.log('getListAgences')
+      console.log("getListAgences");
       const respAg = await axios.get("/api/agences");
       this.agenca = respAg.data;
       const agences = new Map();
@@ -362,56 +398,20 @@ export default {
       return console.log(this.agencaList);
     },
 
-
-        createVhl() {
-            console.log('createVhl')
-      let vhl = {
-        matricule: this.matriculeIn,
-        marque: this.marqueIn,
-        date_mc:this.dateIn,
-        agence_id:this.agenceIn,
-        statu_id: this.statuIn,
-        intitule_id:this.intituleIn,
-        categorie_id:this.categorieIn,
-        utilisateur:this.utilisateurIn,
-
-      };
-      console.log(vhl);
-      console.log('createVhl -millieu')
-      vhl = this;
-      axios
-        .post("/api/vhls", { ...vhl })
-        .then((res) => {
-          console.log(res);
-        })
-        .then(() => this.$router.push('/'))
-                .catch(err => console.log(err.message))
-
-
-
-
-
-
-        console.log('createVhl - ok')
-
-    // selectAgence() {
-    //   this.camionsMat = this.camionsMat.filter(x=>x.agence_id == this.Selected)
-
-    // },
-  }},
+  },
 
   async mounted() {
-   await this.base.fetchBase();
-   await this.base.fetchComments();
-    await this.base.fetchIntitules()
-   await this.base.fetchStatus();
-   await this.getListAgences;
-     this.filterMatricule;
+    await this.base.fetchBase();
+    await this.base.fetchComments();
+    await this.base.fetchIntitules();
+    await this.base.fetchStatus();
+    await this.getListAgences;
+    this.filterMatricule;
 
-     //await this.base.getAgencesList();
+    //await this.base.getAgencesList();
 
-//     //this.selectAgence;
+    //     //this.selectAgence;
   },
-}
+};
 </script>
 <style></style>

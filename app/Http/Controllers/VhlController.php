@@ -19,61 +19,56 @@ class VhlController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     public function viewMain()
+    public function viewMain()
     {
 
         return view('app');
-
     }
     public function index()
     {
 
-        return VhlResource::collection(Vhl::with(['agence','categorie','intitule','statu','comment'])->get());
-
+        return VhlResource::collection(Vhl::with(['agence', 'categorie', 'intitule', 'statu', 'comment'])->get());
     }
 
     public function ListAgences()
     {
-        return  ListResource::collection(Agence::all());
+        return ListResource::collection(Agence::all());
     }
     public function ListComments()
     {
-        return  ListResource::collection(Comment::with('vhl')->get());
+        return ListResource::collection(Comment::with('vhl')->get());
     }
 
     public function ListStatus()
     {
-        return  ListResource::collection(Statu::all());
+        return ListResource::collection(Statu::all());
     }
     public function ListIntitules()
     {
-        return  ListResource::collection(Intitule::with('vhls')->get());
+        return ListResource::collection(Intitule::with('vhls')->get());
     }
 
 
 
 
-    public function storeComment(Request $request){
+    public function storeComment(Request $request)
+    {
 
 
         $comment = Comment::create([
-            'comment'=>$request->comment,
-            'active'=>$request->active,
-            'vhl_id'=>$request->vhl_id,
-            'statu_id'=>$request->statu_id,
+            'comment' => $request->comment,
+            'active' => $request->active,
+            'vhl_id' => $request->vhl_id,
+            'statu_id' => $request->statu_id,
         ]);
         return response()->json([
-            'id'=>$comment->id,
-            'comment'=>$comment->comment,
-            'vhl_id'=>$comment->vhl_id,
-            'statu_id'=>$comment->statu_id,
+            'id' => $comment->id,
+            'comment' => $comment->comment,
+            'vhl_id' => $comment->vhl_id,
+            'statu_id' => $comment->statu_id,
 
 
         ]);
-
-
-
-
     }
 
 
@@ -93,23 +88,27 @@ class VhlController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storeVhl(Request $request)
     {
-
-        $vhl = Vhl::create([
-            'matricule'=>$request->matricule,
-            'marque'=>$request->marque,
-            'date_mc'=>$request->date_mc,
-
-            'agence_id'=>$request->agence_id,
-            'statu_id'=>$request->statu_id,
-            'categorie_id'=>$request->categorie_id,
-
-            'intitule_id'=>$request->intitule_id,
-            'utilisateur'=>$request->utilisateur,
-
-
+        //die('ok serveur');
+        $vhli = Vhl::create([
+            'matricule' => $request->matricule,
+            'marque' => $request->marque,
+            'date_mc' => $request->date_mc,
+            'agence_id' => $request->agence_id,
+            'statu_id' => $request->statu_id,
+            'categorie_id' => $request->categorie_id,
+            'intitule_id' => $request->intitule_id,
+            'utilisateur' => $request->utilisateur,
         ]);
+        // die($vhli);
+        // return response()->json([
+        //     'id' => $vhl->id,
+        //     // 'statu_id' => $vhl->statu_id,
+
+
+        // ]);
+         return response()->json([$request->$vhli]);
 
 
 

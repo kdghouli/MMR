@@ -9,7 +9,10 @@ class Vhl extends Model
 {
 
     use SoftDeletes;
-    protected $hidden=['created_at','updated_at'];
+
+
+    protected $fillable=['matricule','marque','date_mc','agence_id','intitule_id','statu_id','categorie_id','utilisateur'];
+   // protected $hidden=['created_at','updated_at'];
 
     // protected $table = 'vhls';
 

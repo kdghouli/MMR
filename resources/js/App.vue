@@ -4,11 +4,13 @@
     </div>
 
     <div class="row">
-        <router-view v-slot="{ Component }">
+        <!-- <router-view v-slot="{ Component }">
             <transition name="fade">
                 <component :is="Component" />
             </transition>
-        </router-view>
+        </router-view> -->
+
+        <router-view></router-view>
     </div>
 
     <div class="row">

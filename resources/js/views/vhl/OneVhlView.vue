@@ -227,7 +227,7 @@ export default {
       comment: "",
       nbComments: "",
       componentComment: false,
-      statusList: [],
+      statusList: useBasesStore().optionStatus,
       statu_id: "",
       vhl_id: "",
       now: new Date(),
@@ -239,14 +239,14 @@ export default {
       return (this.vhl = this.base.base.filter((x) => x.id == this.$route.params.id));
     },
 
-    getListStatus() {
-      console.log("getListStatus");
-      this.vhl_id = this.$route.params.id;
-      const lista = new Map();
-      this.base.status.forEach((x) => lista.set(x.id, x.etat));
-      this.statusList = Array.from(lista);
-      return console.log(this.statusList);
-    },
+    // getListStatus() {
+    //   console.log("getListStatus");
+    //   this.vhl_id = this.$route.params.id;
+    //   const lista = new Map();
+    //   this.base.status.forEach((x) => lista.set(x.id, x.etat));
+    //   this.statusList = Array.from(lista);
+    //   return console.log(this.statusList);
+    // },
   },
 
   methods: {
@@ -300,9 +300,9 @@ export default {
             }
   },
  async mounted() {
-    //this.getListStatus;
+    this.getListStatus;
    // await this.base.fetchBase();
-
+   this.vhl_id = this.$route.params.id;
   },
 };
 </script>

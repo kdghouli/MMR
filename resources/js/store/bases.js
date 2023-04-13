@@ -58,9 +58,9 @@ export const useBasesStore = defineStore("bases", {
         getAgences() {
             return (this.agences = this.base.agences);
         },
-        getStatus() {
-            return (this.status = this.base.status);
-        },
+        // getStatus() {
+        //     return (this.status = this.base.status);
+        // },
 
 
         // LES OPTIONS SELECT
