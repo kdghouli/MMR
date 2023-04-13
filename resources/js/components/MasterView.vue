@@ -319,8 +319,23 @@ export default {
 
 
     createVhl() {
+
       console.log("createVhl");
-      let vhli = {
+    //   let vhli = {
+    //     matricule: this.matriculeIn,
+    //     marque: this.marqueIn,
+    //     date_mc: this.dateIn,
+    //     agence_id: this.agenceIn,
+    //     statu_id: this.statuIn,
+    //     intitule_id: this.intituleIn,
+    //     categorie_id: this.categorieIn,
+    //     utilisateur: this.utilisateurIn,
+    //   };
+
+
+      const vhl = this;
+      axios
+        .post("/creata", {
         matricule: this.matriculeIn,
         marque: this.marqueIn,
         date_mc: this.dateIn,
@@ -329,24 +344,26 @@ export default {
         intitule_id: this.intituleIn,
         categorie_id: this.categorieIn,
         utilisateur: this.utilisateurIn,
-      };
-      console.log(vhli);
-      console.log("createVhl -millieu");
-      vhli = this;
-      axios
-        .post("api/creata", {vhli },{headers:{ 'Content-Type': 'application/json'}})
+         },{headers:{ 'Content-Type': 'application/json'}})
         .then((res) => {
           console.log(res);
-        })
+        }).then(
+            ()=>{
+        this.matriculeIn,
+        this.marqueIn='',
+        this.dateIn='',
+        this.agenceIn='',
+        this.statuIn='',
+        this.intituleIn='',
+        this.categorieIn='',
+        this.utilisateurIn=''
+            }
+        )
         .then(() => this.$router.push("/"))
         .catch((err) => console.log(err.message));
 
       console.log("createVhl - ok");
 
-      // selectAgence() {
-      //   this.camionsMat = this.camionsMat.filter(x=>x.agence_id == this.Selected)
-
-      // },
     },
     // calcComments(ddd) {
     //   const nbComments = this.CommentsDb.filter((sel) => sel.vhl_id == ddd);

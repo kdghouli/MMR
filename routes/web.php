@@ -16,3 +16,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/{any}', 'VhlController@viewMain')->where('any', '.*');
 
 
+Route::post('/creata' ,'VhlController@storeVhl');

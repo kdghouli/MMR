@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Resources\VhlResource;
 use App\Http\Resources\ListResource;
 use App\Intitule;
-
+use Illuminate\Support\Facades\Log;
 class VhlController extends Controller
 {
     /**
@@ -90,7 +90,16 @@ class VhlController extends Controller
      */
     public function storeVhl(Request $request)
     {
-        //die('ok serveur');
+
+
+        // $vhl = new Vhl;
+
+        // $vhl->matricule = $request->matricule;
+        // $vhl->marque = $request->marque;
+
+        // $vhl->save();
+        // // Log::channel('stderr')->info('Something happened!');
+        // die('ok serveur');
         $vhli = Vhl::create([
             'matricule' => $request->matricule,
             'marque' => $request->marque,
@@ -101,14 +110,14 @@ class VhlController extends Controller
             'intitule_id' => $request->intitule_id,
             'utilisateur' => $request->utilisateur,
         ]);
-        // die($vhli);
-        // return response()->json([
-        //     'id' => $vhl->id,
-        //     // 'statu_id' => $vhl->statu_id,
+        // // die($vhli);
+        // // return response()->json([
+        // //     'id' => $vhl->id,
+        // //     // 'statu_id' => $vhl->statu_id,
 
 
-        // ]);
-         return response()->json([$request->$vhli]);
+        // // ]);
+         return response()->json([$request-> $vhli]);
 
 
 
