@@ -277,6 +277,8 @@
         </div>
       </div>
     </div>
+
+    <!-- fin Modal -->
   </div>
 </template>
 

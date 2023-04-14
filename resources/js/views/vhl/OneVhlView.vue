@@ -1,4 +1,10 @@
 <template>
+
+
+
+
+
+
   <div class="my-1 bg-primary-50 bg-gradient shadow p-1 border border-1 rounded">
     <h3 class="p-2 fw-semibold border border-danger text-center shadow-sm rounded">
       Fiche de Véhicule Immatriculé :
@@ -14,6 +20,10 @@
         </button></span
       >
     </h3>
+     <!-- use the modal component, pass in the prop -->
+     <UpdateVhlModal :show="showModal" @close="showModal = false" :vhlo=vhl_id>
+
+    </UpdateVhlModal>
     <div v-for="vhlo in vhl" :key="vhlo">
       <div class="p-1 bg-primary border border-1 rounded">
         <h4 class="text-white p-1 text-center border border-2 rounded">
@@ -22,6 +32,7 @@
           <button
             type="button"
             class="btn btn-outline-warning my-auto btn-sm float-end align-items-center"
+             id="show-modal" @click="showModal = true"
           >
             Edit
           </button>
@@ -59,8 +70,7 @@
           </div>
           <!-- card Historique -->
           <div
-            class="col-5 techCard bg-light bg-gradient rounded p-2 border border-2 shadow-sm"
-          >
+            class="col-5 techCard bg-light bg-gradient rounded p-2 border border-2 shadow-sm">
             <p class="text-center fw-bolder text-dark fs-5 text-light border-bottom">
               Historique
             </p>
@@ -208,6 +218,7 @@
 
 <script>
 import CommentsVhl from "./CommentsVhl";
+import UpdateVhlModal from "./UpdateVhlModal";
 import { useBasesStore } from "../../store/bases.js";
 import moment from 'moment';
 
@@ -215,7 +226,7 @@ import moment from 'moment';
 
 export default {
   components: {
-    CommentsVhl,
+    CommentsVhl,UpdateVhlModal
   },
 
   data() {
@@ -232,6 +243,7 @@ export default {
       vhl_id: "",
       now: new Date(),
       active: false,
+      showModal: false
     };
   },
   computed: {
