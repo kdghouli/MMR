@@ -21,7 +21,7 @@
       >
     </h3>
      <!-- use the modal component, pass in the prop -->
-     <UpdateVhlModal :show="showModal" @close="showModal = false" :vhlo=vhl_id>
+     <UpdateVhlModal :show="showModal" @close="showModal = false" :vhlo=vhl_id :vhl=vhl >
 
     </UpdateVhlModal>
     <div v-for="vhlo in vhl" :key="vhlo">
@@ -232,7 +232,6 @@ export default {
   data() {
     return {
       base: useBasesStore(),
-      vhl: {},
       agenceName: "",
       comments: {},
       comment: "",

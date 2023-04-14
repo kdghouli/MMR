@@ -32,7 +32,7 @@ class VhlController extends Controller
 
     public function ListAgences()
     {
-        return ListResource::collection(Agence::all());
+        return ListResource::collection(Agence::with('vhls')->get());
     }
     public function ListComments()
     {

@@ -39,7 +39,7 @@
             >{{ camion.matricule }}
           </router-link>
           <span class="fw-lighter ms-4 me-auto align-bottom" style="font-size: 9px">{{
-            camion.intitule.nom
+            camion.intitule.nom?camion.intitule.nom:"ok"
           }}</span>
           <span class="badge bg-success rounded-pill" v-if="camion.comment.length">{{
             camion.comment.length
@@ -303,7 +303,7 @@ export default {
       vhl_id: "",
       intituleListe: useBasesStore().optionIntitules,
 
-      agencaList: null,
+      agencaList: useBasesStore().optionAgences,
 
       matriculeIn: "",
       marqueIn: "",
@@ -315,6 +315,7 @@ export default {
       utilisateurIn: "",
     };
   },
+
   methods: {
 
 
@@ -323,18 +324,6 @@ export default {
     createVhl() {
 
       console.log("createVhl");
-    //   let vhli = {
-    //     matricule: this.matriculeIn,
-    //     marque: this.marqueIn,
-    //     date_mc: this.dateIn,
-    //     agence_id: this.agenceIn,
-    //     statu_id: this.statuIn,
-    //     intitule_id: this.intituleIn,
-    //     categorie_id: this.categorieIn,
-    //     utilisateur: this.utilisateurIn,
-    //   };
-
-
       const vhl = this;
       axios
         .post("/creata", {
@@ -407,15 +396,15 @@ export default {
     //   return console.log(this.statusList);
     // },
 
-    async getListAgences() {
-      console.log("getListAgences");
-      const respAg = await axios.get("/api/agences");
-      this.agenca = respAg.data;
-      const agences = new Map();
-      this.agenca.forEach((x) => agences.set(x.id, x.nom));
-      this.agencaList = Array.from(agences);
-      return console.log(this.agencaList);
-    },
+    // async getListAgences() {
+    //   console.log("getListAgences");
+    //   const respAg = await axios.get("/api/agences");
+    //   this.agenca = respAg.data;
+    //   const agences = new Map();
+    //   this.agenca.forEach((x) => agences.set(x.id, x.nom));
+    //   this.agencaList = Array.from(agences);
+    //   return console.log(this.agencaList);
+    // },
 
   },
 
@@ -424,12 +413,15 @@ export default {
     await this.base.fetchComments();
     await this.base.fetchIntitules();
     await this.base.fetchStatus();
-    await this.getListAgences;
+    await this.base.fetchAgences();
+
+
     this.filterMatricule;
+    this.agencaList= useBasesStore().optionAgences
 
-    //await this.base.getAgencesList();
 
-    //     //this.selectAgence;
+
+
   },
 };
 </script>

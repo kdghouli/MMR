@@ -55,9 +55,9 @@ export const useBasesStore = defineStore("bases", {
             ));
         },
 
-        getAgences() {
-            return (this.agences = this.base.agences);
-        },
+        // getAgences() {
+        //     return (this.agences = this.base.agences);
+        // },
         // getStatus() {
         //     return (this.status = this.base.status);
         // },
@@ -69,21 +69,29 @@ export const useBasesStore = defineStore("bases", {
 
      console.log("optionStatus-getListStatus");
       const lista = new Map();
-      this.status.forEach((x) => lista.set(x.id, x.etat));
+      state.status.forEach((x) => lista.set(x.id, x.etat));
       return Array.from(lista);
 
         },
 
         optionIntitules(state){
 
-            console.log("optionIntitules-getListeIntitule");
+         console.log("optionIntitules-getListeIntitule");
 
-             const lista = new Map();
-             state.intitules.forEach((x) => lista.set(x.id, x.nom));
-             return Array.from(lista);
+        const lista = new Map();
+        state.intitules.forEach((x) => lista.set(x.id, x.nom));
+        return Array.from(lista);
 
-               }
+               },
 
+        optionAgences(state){
+
+         console.log("optionAgences-getListStatus");
+         const lista = new Map();
+         state.agences.forEach((x) => lista.set(x.id, x.nom));
+         return Array.from(lista);
+
+                   },
 
 
         // async searchMatricule(){
@@ -152,7 +160,18 @@ export const useBasesStore = defineStore("bases", {
             }
         },
 
+        async fetchAgences() {
 
+            try {
+                console.log('"fetchAgences - BasesPinia"')
+                const resp = await axios.get("/api/agences")
+                this.agences = resp.data;
+                console.log(this.agences)
+            } catch (error) {
+                console.log(error)
+
+            }
+        },
 
 
         //    async getAgencesList(){
