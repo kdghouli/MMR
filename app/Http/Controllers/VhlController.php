@@ -157,7 +157,7 @@ class VhlController extends Controller
     public function updateVhl(Request $request,$id)
     {
 
-        die('ok serveura');
+
 
 
         $vhl = Vhl::findOrFail($id);
@@ -221,17 +221,17 @@ class VhlController extends Controller
     {
         //
     }
-    public function searchposts($query){
-        $posts = Post::where('title','like','%'.$query.'%')->with('user');
-        //get all rows //count
-        $nbposts = count($posts->get());
+    // public function searchposts($query){
+    //     $posts = Post::where('title','like','%'.$query.'%')->with('user');
+    //     //get all rows //count
+    //     $nbposts = count($posts->get());
 
-        foreach($posts->get() as $post){
-            $post->setAttribute('added_at',$post->created_at->diffForHumans());
-            $post->setAttribute('comments_count',$post->comments->count());
-        }
-        $posts = $posts->paginate(intval($nbposts));
-        return response()->json($posts);
-    }
+    //     foreach($posts->get() as $post){
+    //         $post->setAttribute('added_at',$post->created_at->diffForHumans());
+    //         $post->setAttribute('comments_count',$post->comments->count());
+    //     }
+    //     $posts = $posts->paginate(intval($nbposts));
+    //     return response()->json($posts);
+    // }
 
 }
