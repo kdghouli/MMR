@@ -340,7 +340,7 @@ export default {
           console.log(res);
         }).then(
             ()=>{
-        this.matriculeIn,
+        this.matriculeIn='',
         this.marqueIn='',
         this.dateIn='',
         this.agenceIn='',

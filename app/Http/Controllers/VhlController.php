@@ -154,9 +154,61 @@ class VhlController extends Controller
      * @param  \App\Vhl  $vhl
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Vhl $vhl)
+    public function updateVhl(Request $request,$id)
     {
-        //
+
+        die('ok serveura');
+
+
+        $vhl = Vhl::findOrFail($id);
+
+        // if(Gate::denies('post.update', $post)) {
+        //     abort(403, "You can't edit this post !");
+        // }
+
+        $vhl-> matricule = $request->matricule;
+        $vhl-> marque = $request->marque;
+        $vhl-> date_mc = $request->date_mc;
+        $vhl-> agence_id = $request->agence_id;
+        $vhl-> statu_id = $request->statu_id;
+        $vhl-> categorie_id = $request->categorie_id;
+        $vhl-> intitule_id = $request->intitule_id;
+        $vhl-> utilisateur = $request->utilisateur;
+        $vhl-> save();
+        // // die($vhli);
+        // // return response()->json([
+        // //     'id' => $vhl->id,
+        // //     // 'statu_id' => $vhl->statu_id,
+
+
+        // // ]);
+         return response()->json([$request-> $vhl]);
+
+
+          // Upload Picture for current Post
+        //   if($request->hasFile('picture')) {
+
+        //       $path = $request->file('picture')->store('posts');
+
+        //           if($post->image) {
+        //             Storage::delete($post->image->path);
+        //             $post->image->path = $path;
+        //             $post->image->save();
+        //           }
+        //           else {
+        //               $post->image()->save(Image::make(['path' => $path]));
+        //           }
+        // }
+
+        // $validatedData = $request->validated();
+
+        // // $post->fill($validatedData);
+        // $vhl->save();
+
+        // $request->session()->flash('status', 'Blog vhl was updated!');
+
+        // return redirect()->route('/', ['vhl' => $vhl->id]);
+
     }
 
     /**
@@ -169,4 +221,17 @@ class VhlController extends Controller
     {
         //
     }
+    public function searchposts($query){
+        $posts = Post::where('title','like','%'.$query.'%')->with('user');
+        //get all rows //count
+        $nbposts = count($posts->get());
+
+        foreach($posts->get() as $post){
+            $post->setAttribute('added_at',$post->created_at->diffForHumans());
+            $post->setAttribute('comments_count',$post->comments->count());
+        }
+        $posts = $posts->paginate(intval($nbposts));
+        return response()->json($posts);
+    }
+
 }

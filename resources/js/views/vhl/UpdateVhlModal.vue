@@ -105,7 +105,7 @@ export default {
   props: {
     show: Boolean,
     vhlo: String,
-    vhl:Array
+    vhl:Object
   },
   data() {
     return {
@@ -113,7 +113,7 @@ export default {
       intituleListe: useBasesStore().optionIntitules,
       agencaList: useBasesStore().optionAgences,
 
-      matriculeIn: this.vhl.matricule,
+      matriculeIn: "",
       marqueIn: "",
       dateIn: "",
       agenceIn: "",
@@ -124,15 +124,34 @@ export default {
     };
   },
   methods: {
-    async getListAgences() {
-      console.log("getListAgences");
-      const respAg = await axios.get("/api/agences");
-      this.agenca = respAg.data;
-      const agences = new Map();
-      this.agenca.forEach((x) => agences.set(x.id, x.nom));
-      this.agencaList = Array.from(agences);
-      return console.log(this.agencaList);
-    },
+
+    UpdateVhl() {
+
+console.log("updateVhl");
+const vhl = this;
+
+
+axios
+  .put('/modifia/'+ this.vhl[0].id, {
+  matricule: this.vhl[0].matricule,
+  marque: this.vhl[0].marque,
+  date_mc: this.vhl[0].date_mc,
+  agence_id: this.vhl[0].agence_id,
+  statu_id: this.vhl[0].statu_id,
+  intitule_id: this.vhl[0].intitule_id,
+  categorie_id: this.vhl[0].categorie_id,
+  utilisateur: this.vhl[0].utilisateur,
+   })
+  .then((res) => {
+    console.log(res);
+  })
+  .then(() => this.$router.push("/"))
+  .catch((err) => console.log(err.message));
+
+console.log("updateVhl - ok");
+
+},
+
   },
 };
 </script>
