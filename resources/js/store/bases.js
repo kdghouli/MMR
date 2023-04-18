@@ -2,6 +2,7 @@ import { defineStore } from "pinia";
 // Import axios to make HTTP requests
 import axios from "axios";
 
+
 export const useBasesStore = defineStore("bases", {
     state: () => ({
 
@@ -86,23 +87,32 @@ export const useBasesStore = defineStore("bases", {
          return Array.from(lista);
 
                    },
- //    filteredData(state) {
-                //     return this.camions.filter(row => {
-                //       return Object.values(row).some(value => {
-                //         return String(value).toLowerCase().includes(this.searchIn.toLowerCase());
-                //       });
-                //     });}
 
 
-                filteredData(state){
-                    this.fetchBase
-                    return Object.keys(this.getCamions).reduce((obj, key) => {
-                        if (key.toLowerCase().includes(this.searchIn.toLowerCase())) {
-                          obj[key] = this.shifts[key]
-                        }
-                        return obj
-                      }, {} )
-                    }
+    filteredData(state) {
+                    console.log("filteredData")
+
+                    let tempBase=state.base
+
+                    if (state.searchIn != '' && state.searchIn) {
+                    tempBase = tempBase.filter(row => {
+                        return row.matricule
+            .toUpperCase()
+            .includes(state.searchIn.toUpperCase())
+
+                    })
+                }},
+
+
+                // filteredData(){
+                //     this.fetchBase()
+                //     return Object.keys(this.base).reduce((obj, key) => {
+                //         if (key.toLowerCase().includes(this.searchIn.toLowerCase())) {
+                //           obj[key] = this.shifts[key]
+                //         }
+                //         return obj
+                //       }, {} )
+                //     }
 
 
 

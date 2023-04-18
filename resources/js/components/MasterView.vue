@@ -1,5 +1,6 @@
 <template>
   <div>
+  <h4> {{base.searchIn}} khali</h4>
     <div class="row mt-2">
       <h3 class="col-md-6 mt-1">Liste des véhicules Agence :</h3>
       <div class="col-5">
@@ -283,8 +284,8 @@
 </template>
 
 <script>
-import axios from "axios";
-import { useBasesStore } from "../store/bases.js";
+
+import { useBasesStore} from "../store/bases.js";
 export default {
   data() {
     return {
@@ -299,11 +300,12 @@ export default {
       Selected: 0,
       agenca: {},
       statusList: useBasesStore().optionStatus,
+      intituleListe: useBasesStore().optionIntitules,
+      agencaList: useBasesStore().optionAgences,
       statu_id: "",
       vhl_id: "",
-      intituleListe: useBasesStore().optionIntitules,
 
-      agencaList: useBasesStore().optionAgences,
+
 
       matriculeIn: "",
       marqueIn: "",
@@ -313,6 +315,7 @@ export default {
       intituleIn: "",
       categorieIn: "",
       utilisateurIn: "",
+
     };
   },
 
@@ -384,9 +387,16 @@ export default {
             (x) => x.agence_id == this.Selected
           ));
       }
+},
+     //...mapWritableState(useBasesStore, {searchValue: 'searchIn'}),
 
-      // this.CommentsDb = this.db.comments
-    },
+// searchValue()
+// {
+//     return this.base.searchIn
+
+//       // this.CommentsDb = this.db.comments
+//     },
+
     // getListStatus() {
     //   console.log("getListStatus");
     //   this.vhl_id = this.$route.params.id;
@@ -406,7 +416,10 @@ export default {
     //   return console.log(this.agencaList);
     // },
 
-  },
+    },
+
+
+
 
   async mounted() {
     await this.base.fetchBase();

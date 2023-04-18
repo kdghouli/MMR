@@ -54,30 +54,34 @@
 
 <script>
 
+
 import { useBasesStore } from "./../../store/bases";
 export default {
     data(){
         return{
-            searchIn:'',
-            base:useBasesStore().base,
-            baseSearch:useBasesStore().searchIn,
-            searchGet:useBasesStore().filteredData,
+            searchIn:"",
+            store:useBasesStore()
 
 
         }
     },
-    updated(){
 
 
-        this.searchIn = this.searchIn
+updated(){
+    this.store.$patch({searchIn:this.searchIn})
 
-        console.log(this.searchIn)
-        console.log(this.searchGet)
-        
+    console.log("N1"+this.searchIn)
+   // this.searchIn == this.store.searchIn
+    console.log("N2"+this.store.searchIn)
 
-    },
+},
+
+
+
+
+
     async mounted(){
-        //await this.useBasesStore().fetchBase();
+
        // this.filterOptions();
     }
 
