@@ -41,8 +41,8 @@
         </li>
 
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <form class="d-flex" @submit.prevent="">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" v-model="searchIn">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
     </div>
@@ -51,5 +51,37 @@
 
 
 </template>
+
+<script>
+
+import { useBasesStore } from "./../../store/bases";
+export default {
+    data(){
+        return{
+            searchIn:'',
+            base:useBasesStore().base,
+            baseSearch:useBasesStore().searchIn,
+            searchGet:useBasesStore().filteredData,
+
+
+        }
+    },
+    updated(){
+
+
+        this.searchIn = this.searchIn
+
+        console.log(this.searchIn)
+        console.log(this.searchGet)
+        
+
+    },
+    async mounted(){
+        //await this.useBasesStore().fetchBase();
+       // this.filterOptions();
+    }
+
+}
+</script>
 
 

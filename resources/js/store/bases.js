@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 // Import axios to make HTTP requests
 import axios from "axios";
-import { colors, message } from "laravel-mix/src/Log";
+
 export const useBasesStore = defineStore("bases", {
     state: () => ({
 
@@ -14,7 +14,7 @@ export const useBasesStore = defineStore("bases", {
         commentaires: [],
         status: [],
         intitules:[],
-        searchText: "",
+        searchIn:'',
         listCamion: {},
         vhl: {},
         agenca: [],
@@ -23,12 +23,6 @@ export const useBasesStore = defineStore("bases", {
     // ######################################################
 
     getters: {
-        getMat(state) {
-            return (age) =>
-                state.camions
-                    .filter((x) => x.agence_id == age)
-                    .map((x) => x.matricule);
-        },
 
         getOneVhl(id) {
             return (this.vhl = this.base.find((x) => x.id == id));
@@ -92,6 +86,25 @@ export const useBasesStore = defineStore("bases", {
          return Array.from(lista);
 
                    },
+ //    filteredData(state) {
+                //     return this.camions.filter(row => {
+                //       return Object.values(row).some(value => {
+                //         return String(value).toLowerCase().includes(this.searchIn.toLowerCase());
+                //       });
+                //     });}
+
+
+                filteredData(state){
+                    this.fetchBase
+                    return Object.keys(this.getCamions).reduce((obj, key) => {
+                        if (key.toLowerCase().includes(this.searchIn.toLowerCase())) {
+                          obj[key] = this.shifts[key]
+                        }
+                        return obj
+                      }, {} )
+                    }
+
+
 
 
         // async searchMatricule(){
@@ -172,6 +185,8 @@ export const useBasesStore = defineStore("bases", {
 
             }
         },
+
+
 
 
         //    async getAgencesList(){
