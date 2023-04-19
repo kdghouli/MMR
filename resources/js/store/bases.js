@@ -95,13 +95,13 @@ export const useBasesStore = defineStore("bases", {
                     let tempBase=state.base
 
                     if (state.searchIn != '' && state.searchIn) {
-                    tempBase = tempBase.filter(row => {
+                   return tempBase = tempBase.filter(row => {
                         return row.matricule
             .toUpperCase()
             .includes(state.searchIn.toUpperCase())
 
                     })
-                }},
+                } },
 
 
                 // filteredData(){
