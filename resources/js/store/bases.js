@@ -11,6 +11,7 @@ export const useBasesStore = defineStore("bases", {
         voitures: [],
         scooters: [],
         chariots: [],
+        autres:[],
         agences: [],
         commentaires: [],
         status: [],
@@ -47,6 +48,12 @@ export const useBasesStore = defineStore("bases", {
         getChariots() {
             return (this.chariots = this.base.filter(
                 (x) => x.categorie_id == 4
+            ));
+        },
+
+        getAutres() {
+            return (this.autres = this.base.filter(
+                (x) => x.categorie_id == 5
             ));
         },
 
@@ -113,7 +120,29 @@ export const useBasesStore = defineStore("bases", {
                 //         return obj
                 //       }, {} )
                 //     }
+   // Filter out by cooking time
+//    if (this.maxCookingTime)
+//    tempRecipes = tempRecipes.filter((item) => {
+//      return (item.cookingTime <= this.maxCookingTime)
+//    })
 
+//  // Sort by alphabetical order
+//      tempRecipes = tempRecipes.sort((a, b) => {
+//          if (this.sortBy == 'alphabetically') {
+//              let fa = a.title.toLowerCase(), fb = b.title.toLowerCase()
+
+//            if (fa < fb) {
+//              return -1
+//            }
+//            if (fa > fb) {
+//              return 1
+//            }
+//            return 0
+
+//            // Sort by cooking time
+//          } else if (this.sortBy == 'cookingTime') {
+//            return a.cookingTime - b.cookingTime
+//      }
 
 
 

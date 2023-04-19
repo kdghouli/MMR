@@ -1,6 +1,28 @@
 <template>
   <div>
-  <h4> {{base.filteredData}} khali</h4>
+
+  <!-- search -->
+  <div class="bg-warning m-1" v-if=base.filteredData>
+  <ul class="list-group list-group-flush ">
+
+  <li v-for="search in base.filteredData" :key="index" class="list-group-item list-group-item-action d-flex justify-content-between align-items-start"  >
+    <div class="ms-2 me-auto">
+      <div class="fw-bold h5"><router-link
+            class="text-decoration-none text-warning"
+            :to="{ name: 'OneVhlView', params: { id: search.id } }"
+            >{{ search.matricule }}
+          </router-link></div>
+      {{search.categorie.nom}} à {{ search.agence.nom }} ------> {{ search.utilisateur }}
+    </div>
+    <span class="badge bg-warning rounded-pill">{{ search.intitule.nom }}</span>
+  </li>
+</ul>
+
+  </div>
+
+
+ <!-- selected -->
+
     <div class="row mt-2">
       <h3 class="col-md-6 mt-1">Liste des véhicules Agence :</h3>
       <div class="col-5">
@@ -164,6 +186,45 @@
       </ul>
     </div>
 
+
+ <!-- Autre -->
+
+ <p class="py-2">
+      Nombre des
+      <span class="fw-bolder"
+        ><img class="me-1" src="" alt="" style="width: 30px" /> Autres engins : </span
+      ><span class="badge rounded-pill bg-success ms-1">{{ autreMat.length }}</span>
+    </p>
+
+    <div class="row row-cols-lg-3 row-cols-md-2 mb-2">
+      <ul v-for="autre in autreMat" class="list-group" :key="autre">
+        <li
+          class="list-group-item list-group-item-action d-flex justify-content-between align-items-center list-group-item-success mb-1 shadow-sm"
+          :class="{
+            ['bg-danger fw-bold text-white animate__animated animate__heartBeat animate__infinite']:
+            autre.comment.length,
+          }"
+        >
+          <img class="me-1" src="" alt="" style="width: 22px" />
+          <router-link
+            class="text-decoration-none"
+            :to="{
+              name: 'OneVhlView',
+              params: { id: autre.id },
+            }"
+            >{{ autre.matricule }}</router-link
+          >
+          <span
+            class="fw-lighter ms-4 me-auto align-bottom text-truncate"
+            style="font-size: 10px"
+            >{{ autre.utilisateur }}</span
+          ><span class="badge bg-danger rounded-pill" v-if="autre.comment.length">{{
+            autre.comment.length
+          }}</span>
+        </li>
+      </ul>
+    </div>
+
     <!-- ------modal -->
     <div
       class="modal fade"
@@ -296,6 +357,7 @@ export default {
       voituresMat: {},
       scootersMat: {},
       chariotsMat: {},
+      autreMat:{},
       CommentsDb: useBasesStore().commentaires,
       Selected: 0,
       agenca: {},
@@ -373,6 +435,7 @@ export default {
         this.voituresMat = this.base.getVoitures;
         this.scootersMat = this.base.getScooters;
         this.chariotsMat = this.base.getChariots;
+        this.autreMat = this.base.getAutres
       } else {
         (this.camionsMat = this.base.getCamions.filter(
           (x) => x.agence_id == this.Selected
